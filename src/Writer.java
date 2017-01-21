@@ -1,11 +1,11 @@
-package addressbook;
+//package addressbook;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class Writer {
      public static void writer() throws FileNotFoundException{
-         try (PrintWriter pw = new PrintWriter(new File("/Users/Boydn/Documents/CIS422/Assignment1/testNewAddress.csv"))) {
+         try (PrintWriter pw = new PrintWriter(new File("test.csv").getAbsolutePath())) {
              StringBuilder sb = new StringBuilder();
              sb.append("Grape"); //FirstName
              sb.append(',');

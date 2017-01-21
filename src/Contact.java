@@ -1,5 +1,17 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+//package addressbook;
+
+public class Contact {
+
+}
+=======
 import java.util.Comparator;
 
+=======
+import java.util.Comparator;
+
+>>>>>>> origin/master
 public class Contact implements Comparator<Contact>, Comparable<Contact> {
 	private String _firstName;
 	private String _lastName;
@@ -87,3 +99,4 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 		return (c1._zip - c2._zip);
 	}
 }
+>>>>>>> origin/master
