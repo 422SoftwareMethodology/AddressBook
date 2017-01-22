@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 //package addressbook;
 
-public class Contact {
-
-}
-=======
 import java.util.Comparator;
 
-=======
-import java.util.Comparator;
-
->>>>>>> origin/master
 public class Contact implements Comparator<Contact>, Comparable<Contact> {
 	private String _firstName;
 	private String _lastName;
@@ -22,8 +12,21 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 	private String _email;
 	private int _zip;
 	
-	public Contact () {
-	}
+	public Contact (String firstName,String lastName, String phoneNumber, 
+                String address, String city, String state, String email, int zip) {
+            
+            set_firstName(firstName);
+            set_lastName(lastName);
+            set_phoneNumber(phoneNumber);
+            set_address(address);
+            set_city(city);
+            set_state(state);
+            set_email(email);
+            set_zip(zip);
+        
+        }
+        
+        
 
 	public String get_firstName() {
 		return _firstName;
@@ -99,4 +102,3 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 		return (c1._zip - c2._zip);
 	}
 }
->>>>>>> origin/master

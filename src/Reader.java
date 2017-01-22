@@ -1,32 +1,44 @@
 //package addressbook;
 import java.io.*;
+import java.util.ArrayList;
 
+//
+// This class reads content from a file (currently csv) and returns a ArrayList
+//
 
 public class Reader {
 
-    public static void reader(String fileLocation) {
+    public static ArrayList<Contact> reader(String fileLocation) {
 
         String csvFile = fileLocation;
         String line = "";
         String cvsSplitBy = ",";
+        
+        ArrayList<Contact> tempContactList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
             while ((line = br.readLine()) != null) {
+                // contact array of a single person, use comma to delimit
+                String[] infoArr = line.split(cvsSplitBy);
+                
+                
+                int    zipInt = Integer.parseInt(infoArr[7]); //to deal with array type conflict
+                
+                Contact tempContact = new Contact(infoArr[0],infoArr[1],infoArr[2],infoArr[3],
+                        infoArr[4],infoArr[5],infoArr[6],zipInt);
+                
+                tempContactList.add(tempContact);
 
-                // use comma as separator
-                String[] contact = line.split(cvsSplitBy);
-
-                System.out.println("Contact : firstName= " + contact[0] + " , lastName=" + contact[1] + 
+                /*System.out.println("Contact : firstName= " + contact[0] + " , lastName=" + contact[1] + 
                         " , street address=" + contact[2] + " , city=" + contact[3] + " , state=" + contact[4] 
-                        + " , email=" + contact[5] );
-
+                        + " , email=" + contact[5] ); //For Debugging*/
+                
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return tempContactList;
     }
-
 }
