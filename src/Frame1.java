@@ -24,6 +24,7 @@ public class Frame1 extends JFrame{
 	private JPanel buttonPanel1, TextPanel, displayPanel;
 	private JTable table1;
 	private JScrollPane scroll;
+	private ArrayList<Contact> myList = new ArrayList<Contact>();
 	
 	public Frame1(){
 		super("Addressbook!");
@@ -72,6 +73,7 @@ public class Frame1 extends JFrame{
 		TextPanel.add(namelabel);
 		TextPanel.add(ta);
 		TextPanel.add(searchbutton);
+
 		
 		ArrayList<Double> myArrayList = new ArrayList<>();
 		
@@ -83,6 +85,8 @@ public class Frame1 extends JFrame{
 				myArrayList.add(item);
 			}
 		}
+		
+	
 		/*
 		double[][] st = new double[3][7];
 		for (int i = 0; i < 3; i++)
@@ -134,10 +138,11 @@ public class Frame1 extends JFrame{
         DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
 		table1 = new JTable(tableModel);
 		
-		double firstName = 0, lastName = 0, phoneNumber = 0, address = 0, city = 0, state = 0, email = 0;
-		for(int i = 0; i < 35; i+=7){
-			firstName = myArrayList.get(i);
-			lastName = myArrayList.get(i+1);
+		String firstName, lastName;
+		double phoneNumber = 0, address = 0, city = 0, state = 0, email = 0;
+		for(int i = 0; i < 1; i++){
+			firstName = AddressBook.openContactList.get(i).get_firstName();
+			lastName = AddressBook.openContactList.get(i).get_lastName();
 			phoneNumber = myArrayList.get(i+2);
 			address = myArrayList.get(i+3);
 			city = myArrayList.get(i+4);

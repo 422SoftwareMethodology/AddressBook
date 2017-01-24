@@ -17,11 +17,14 @@ import java.util.ArrayList;
 
 public class AddressBook {
     
+	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
+	public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", 0);
+	
         public static void main(String[] args) throws FileNotFoundException {
             
-        ArrayList<Contact> openContactList;
-        
         String fileLoc = new File("test.csv").getAbsolutePath();
+        Menu frame = new Menu();
+		frame.setVisible(true);
         
         Writer.writer();
         openContactList = Reader.reader(fileLoc);
@@ -33,5 +36,6 @@ public class AddressBook {
         ListEdit.finder(openContactList, "Zardoz");
         ListEdit.finder(openContactList, "AintGonnaFindIt");
     }
-    
+        
+        
 }

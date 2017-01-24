@@ -29,6 +29,8 @@ public class Reader {
                         infoArr[4],infoArr[5],infoArr[6],zipInt);
                 
                 tempContactList.add(tempContact);
+                
+                System.out.println("Contact: firstName = " + tempContact.get_firstName());
 
                 /*System.out.println("Contact : firstName= " + contact[0] + " , lastName=" + contact[1] + 
                         " , street address=" + contact[2] + " , city=" + contact[3] + " , state=" + contact[4] 
