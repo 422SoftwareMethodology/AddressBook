@@ -26,7 +26,7 @@ public class Frame1 extends JFrame{
 		TextPanel = new JPanel(new GridLayout(1, 3));     //panel for search function
 		displayPanel = new JPanel(new GridLayout(1, 1));  //not sure about the display part, it depends on the backend. It should show a list with name or other info. 
 		addbutton = new JButton("Add");
-		addbutton.setBackground(Color.green);
+		addbutton.setBackground(Color.white);
 		addbutton.addActionListener(new ActionListener(){  //jump to person info interface
             public void actionPerformed(ActionEvent e) {  
                 PersonInfo p1 = new PersonInfo();
@@ -34,15 +34,15 @@ public class Frame1 extends JFrame{
             }   
         });  
 		editbutton = new JButton("Edit");            //these buttons' functions depends on backend, need discuss together.
-		editbutton.setBackground(Color.green);       //set buttons' color, it works for windows, but fail on Mac. 
+		editbutton.setBackground(Color.white);       //set buttons' color, it works for windows, but fail on Mac. 
 		deletebutton = new JButton("Delete");
-		deletebutton.setBackground(Color.green);
+		deletebutton.setBackground(Color.white);
 		searchbutton = new JButton("Search");
-		searchbutton.setBackground(Color.green);
+		searchbutton.setBackground(Color.white);
 		savebutton = new JButton("Save");
-		savebutton.setBackground(Color.green);
+		savebutton.setBackground(Color.white);
 		saveasbutton = new JButton("Save as");
-		saveasbutton.setBackground(Color.green);;
+		saveasbutton.setBackground(Color.white);;
 		
 		namelabel = new JLabel("           Enter the name:");
 		ta= new JTextField();                     //the area customer can text

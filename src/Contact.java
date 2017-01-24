@@ -13,7 +13,7 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 	private int _zip;
 	
 	public Contact (String firstName,String lastName, String phoneNumber, 
-                String address, String city, String state, String email, int zip) {
+                    String address, String city, String state, String email, int zip) {
             
             set_firstName(firstName);
             set_lastName(lastName);
@@ -26,8 +26,6 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
         
         }
         
-        
-
 	public String get_firstName() {
 		return _firstName;
 	}

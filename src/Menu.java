@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,6 +37,20 @@ public class Menu extends JFrame{
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
+				if (Desktop.isDesktopSupported()) {
+				    try {
+						Desktop.getDesktop().open(new File("C:\\"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				/*try {
+					Process p = new ProcessBuilder("explorer.exe", "/select,C:\\directory\\selectedFile").start();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
 				Frame1 f1 = new Frame1();
 				f1.setLocation(150, 50);
         }   
