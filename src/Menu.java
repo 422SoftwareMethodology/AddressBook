@@ -37,7 +37,8 @@ public class Menu extends JFrame{
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
-				if (Desktop.isDesktopSupported()) {
+				Boolean status = Open.FOpen();
+				/*if (Desktop.isDesktopSupported()) {
 				    try {
 						Desktop.getDesktop().open(new File("C:\\"));
 					} catch (IOException e1) {
@@ -45,7 +46,7 @@ public class Menu extends JFrame{
 						e1.printStackTrace();
 					}
 				}
-				/*try {
+				try {
 					Process p = new ProcessBuilder("explorer.exe", "/select,C:\\directory\\selectedFile").start();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
