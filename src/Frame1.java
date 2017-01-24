@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 //addressbook interface
@@ -71,6 +73,17 @@ public class Frame1 extends JFrame{
 		TextPanel.add(ta);
 		TextPanel.add(searchbutton);
 		
+		ArrayList<Double> myArrayList = new ArrayList<>();
+		
+		double item;
+		for(int i = 0; i < 5; i++){
+			for(int j = 0; j < 7; j++){
+				
+				item = Math.random();
+				myArrayList.add(item);
+			}
+		}
+		/*
 		double[][] st = new double[3][7];
 		for (int i = 0; i < 3; i++)
 		{
@@ -81,7 +94,9 @@ public class Frame1 extends JFrame{
 			     st[i][j] = item;
 			}
 		}
+		*/
 		
+		/*
 		Object[][] obj = new Object[3][7];  
         for (int i = 0; i < 3; i++)  
         {  
@@ -113,10 +128,27 @@ public class Frame1 extends JFrame{
                 }  
             }  
         }  
+        */
         String[] columnNames =  
             { "firstname", "lastname", "phonenumber", "address", "city", "state", "email" };  
-        
-		table1 = new JTable(obj, columnNames);
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+		table1 = new JTable(tableModel);
+		
+		double firstName = 0, lastName = 0, phoneNumber = 0, address = 0, city = 0, state = 0, email = 0;
+		for(int i = 0; i < 35; i+=7){
+			firstName = myArrayList.get(i);
+			lastName = myArrayList.get(i+1);
+			phoneNumber = myArrayList.get(i+2);
+			address = myArrayList.get(i+3);
+			city = myArrayList.get(i+4);
+			state = myArrayList.get(i+5);
+			email = myArrayList.get(i+6);
+			
+			Object[] data = { firstName, lastName, phoneNumber, address, city, state, email};
+			tableModel.addRow(data);
+		}
+		
+		
 		TableColumn column = null;  
         int colunms = table1.getColumnCount();  
         for(int i = 0; i < colunms; i++)  
