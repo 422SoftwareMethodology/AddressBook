@@ -46,6 +46,7 @@ public class Menu extends JFrame{
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
+				Open.FOpen();
 				Frame1 f1 = new Frame1();
 				f1.setLocation(150, 50);
         }   
