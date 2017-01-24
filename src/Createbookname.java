@@ -16,11 +16,13 @@ public class Createbookname extends JFrame{
 	private JPanel namepanel;
 	private JTextField bookname;
 	private JButton submit;
+	private static String inputaddressbook;
 	
 	public Createbookname(){
 		super("Please enter the addressbook name!");
 		namepanel = new JPanel(new GridLayout(1, 3));     //only one panel in this interface
 		bookname = new JTextField();
+		setInputaddressbook(bookname.getText());
 		prompt = new JLabel("             New addressbook name:");
 		submit = new JButton("submit");
 		submit.addActionListener(new ActionListener(){  
@@ -39,6 +41,14 @@ public class Createbookname extends JFrame{
 		setSize(700,70);   //set frame size
 		setVisible(true);
 		
+	}
+
+	public static String getInputaddressbook() {
+		return inputaddressbook;
+	}
+
+	public void setInputaddressbook(String inputaddressbook) {
+		this.inputaddressbook = inputaddressbook;
 	}
 
 }

@@ -17,6 +17,7 @@ public class PersonInfo extends JFrame{
 	private JLabel FirstName, LastName, phonenumber, ZIP_code, city, state, address, email;
 	private JTextField fname, lname, phonenum, zip, c, s, a, e;
 	private JButton Done, Cancel;
+	private String inputfname;
 	public PersonInfo(){
 		super("Contact Info!");
 		setLayout(new BorderLayout());
@@ -32,7 +33,8 @@ public class PersonInfo extends JFrame{
 		ZIP_code = new JLabel("            ZIP");
 		email = new JLabel("            Email address");
 		
-		fname = new JTextField();                   //all text areas
+		fname = new JTextField();  //all text areas
+		inputfname = fname.getText();
 		lname = new JTextField();
 		phonenum = new JTextField();
 		zip = new JTextField();
