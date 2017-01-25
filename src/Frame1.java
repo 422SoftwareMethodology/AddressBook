@@ -74,80 +74,20 @@ public class Frame1 extends JFrame{
 		TextPanel.add(ta);
 		TextPanel.add(searchbutton);
 
-		
-		ArrayList<Double> myArrayList = new ArrayList<>();
-		
-		double item;
-		for(int i = 0; i < 5; i++){
-			for(int j = 0; j < 7; j++){
-				
-				item = Math.random();
-				myArrayList.add(item);
-			}
-		}
-		
-	
-		/*
-		double[][] st = new double[3][7];
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 7; j++)
-			{
-			     double item = Math.random();
-			     
-			     st[i][j] = item;
-			}
-		}
-		*/
-		
-		/*
-		Object[][] obj = new Object[3][7];  
-        for (int i = 0; i < 3; i++)  
-        {  
-            for (int j = 0; j < 7; j++)  
-            {  
-                switch (j)  
-                {  
-                case 0:  
-                    obj[i][j] = st[i][0];  
-                    break;  
-                case 1:  
-                    obj[i][j] = st[i][1]; 
-                    break;  
-                case 2:  
-                    obj[i][j] = st[i][2]; 
-                    break;  
-                case 3:  
-                    obj[i][j] = st[i][3]; 
-                    break;  
-                case 4:  
-                    obj[i][j] = st[i][4];
-                    break;  
-                case 5:  
-                    obj[i][j] = st[i][5]; 
-                    break;
-                case 6:
-                	obj[i][j] = st[i][6];
-                	break;
-                }  
-            }  
-        }  
-        */
         String[] columnNames =  
             { "firstname", "lastname", "phonenumber", "address", "city", "state", "email" };  
         DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
 		table1 = new JTable(tableModel);
 		
-		String firstName, lastName;
-		double phoneNumber = 0, address = 0, city = 0, state = 0, email = 0;
+		String firstName, lastName, phoneNumber, address, city, state, email;
 		for(int i = 0; i < 1; i++){
 			firstName = AddressBook.openContactList.get(i).get_firstName();
 			lastName = AddressBook.openContactList.get(i).get_lastName();
-			phoneNumber = myArrayList.get(i+2);
-			address = myArrayList.get(i+3);
-			city = myArrayList.get(i+4);
-			state = myArrayList.get(i+5);
-			email = myArrayList.get(i+6);
+			phoneNumber = AddressBook.openContactList.get(i).get_phoneNumber();
+			address = AddressBook.openContactList.get(i).get_address();
+			city = AddressBook.openContactList.get(i).get_city();
+			state = AddressBook.openContactList.get(i).get_state();
+			email = AddressBook.openContactList.get(i).get_email();
 			
 			Object[] data = { firstName, lastName, phoneNumber, address, city, state, email};
 			tableModel.addRow(data);
