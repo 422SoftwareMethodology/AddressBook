@@ -22,9 +22,9 @@ public class Frame1 extends JFrame{
 	private JTextField ta;
 	private JLabel namelabel;
 	private JPanel buttonPanel1, TextPanel, displayPanel;
-	private JTable table1;
 	private JScrollPane scroll;
-	private ArrayList<Contact> myList = new ArrayList<Contact>();
+	private static JTable table1;
+	private static DefaultTableModel tableModel;
 	
 	public Frame1(){
 		super("Addressbook!");
@@ -76,22 +76,8 @@ public class Frame1 extends JFrame{
 
         String[] columnNames =  
             { "firstname", "lastname", "phonenumber", "address", "city", "state", "email" };  
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
+        tableModel = new DefaultTableModel(columnNames, 0);
 		table1 = new JTable(tableModel);
-		
-		String firstName, lastName, phoneNumber, address, city, state, email;
-		for(int i = 0; i < 1; i++){
-			firstName = AddressBook.openContactList.get(i).get_firstName();
-			lastName = AddressBook.openContactList.get(i).get_lastName();
-			phoneNumber = AddressBook.openContactList.get(i).get_phoneNumber();
-			address = AddressBook.openContactList.get(i).get_address();
-			city = AddressBook.openContactList.get(i).get_city();
-			state = AddressBook.openContactList.get(i).get_state();
-			email = AddressBook.openContactList.get(i).get_email();
-			
-			Object[] data = { firstName, lastName, phoneNumber, address, city, state, email};
-			tableModel.addRow(data);
-		}
 		
 		
 		TableColumn column = null;  
@@ -107,9 +93,30 @@ public class Frame1 extends JFrame{
 		add(buttonPanel1, BorderLayout.NORTH);   //set panel location
 		add(TextPanel, BorderLayout.SOUTH);
 		add(scroll, BorderLayout.CENTER);
+		AddContactToTable();
 		
 		setSize(500,500);          //set frame size
 		setVisible(true);
 	}
-
+	
+	public static void AddContactToTable() {
+		if (tableModel.getRowCount() > 0) {
+		    for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
+		        tableModel.removeRow(i);
+		    }
+		}
+		String firstName = " ", lastName = " ", phoneNumber = " ", address = " ", city = " ", state = " ", email = " ";
+		for(int i = 0; i <  AddressBook.openContactList.size(); ++i){
+			firstName = AddressBook.openContactList.get(i).get_firstName();
+			lastName = AddressBook.openContactList.get(i).get_lastName();
+			phoneNumber = AddressBook.openContactList.get(i).get_phoneNumber();
+			address = AddressBook.openContactList.get(i).get_address();
+			city = AddressBook.openContactList.get(i).get_city();
+			state = AddressBook.openContactList.get(i).get_state();
+			email = AddressBook.openContactList.get(i).get_email();
+			
+			Object[] data = { firstName, lastName, phoneNumber, address, city, state, email };
+			Frame1.tableModel.addRow(data);
+		}
+	}	
 }

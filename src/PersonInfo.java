@@ -18,8 +18,10 @@ public class PersonInfo extends JFrame{
 	private JTextField fname, lname, phonenum, zip, c, s, a, e;
 	private JButton Done, Cancel;
 	private String inputfname;
+	private Contact tempContact;
 	public PersonInfo(){
 		super("Contact Info!");
+		tempContact = new Contact(" ", " ", " ", " ", " ", " ", " ", 0);
 		setLayout(new BorderLayout());
 		
 		InfoPanel = new JPanel(new GridLayout(9, 2));      //one panel in this interface
@@ -45,7 +47,15 @@ public class PersonInfo extends JFrame{
 		
 		Done = new JButton("Done!");    //click this button to save the info
 		Done.addActionListener(new ActionListener(){  
-			public void actionPerformed(ActionEvent e) {  
+			public void actionPerformed(ActionEvent e) { 
+				if (fname.getText() != null) {
+						tempContact.set_firstName(fname.getText());
+				}
+				/*tempContact.set_lastName(lname.getText());
+				tempContact.set_phoneNumber(phonenum.getText());
+				tempContact.set_address(a.getText());*/
+				AddressBook.openContactList.add(tempContact);
+				Frame1.AddContactToTable();
 				dispose();                                //after customer click the button, close the current window and save data
         }   
     });  
