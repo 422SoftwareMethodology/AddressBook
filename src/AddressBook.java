@@ -1,5 +1,3 @@
-//package addressbook;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 public class AddressBook {
     
 	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
-	public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", 0);
+	public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", "zero");
 	
         public static void main(String[] args) throws FileNotFoundException {
             

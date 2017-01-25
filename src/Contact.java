@@ -1,8 +1,6 @@
-//package addressbook;
-
 import java.util.Comparator;
 
-public class Contact implements Comparator<Contact>, Comparable<Contact> {
+public class Contact implements Comparable<Contact> {
 	private String _firstName;
 	private String _lastName;
 	private String _phoneNumber;
@@ -10,10 +8,10 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 	private String _city;
 	private String _state;
 	private String _email;
-	private int _zip;
+	private String _zip;
 	
 	public Contact (String firstName,String lastName, String phoneNumber, 
-                    String address, String city, String state, String email, int zip) {
+                    String address, String city, String state, String email, String zip) {
             
             set_firstName(firstName);
             set_lastName(lastName);
@@ -82,21 +80,16 @@ public class Contact implements Comparator<Contact>, Comparable<Contact> {
 		this._email = email;
 	}
 
-	public int get_zip() {
+	public String get_zip() {
 		return _zip;
 	}
 
-	public void set_zip(int zip) {
+	public void set_zip(String zip) {
 		this._zip = zip;
 	}
 
 	@Override
 	public int compareTo(Contact c) {
 		return (this._lastName).compareTo(c._lastName);
-	}
-
-	@Override
-	public int compare(Contact c1, Contact c2) {
-		return (c1._zip - c2._zip);
 	}
 }
