@@ -14,7 +14,7 @@ public class deleteconfirmation extends JFrame{
 	private JButton Yes, No;
 	private JLabel confirmation;
 	
-	public deleteconfirmation(){
+	public deleteconfirmation(int rowToDelete){
 		labelpanel = new JPanel(new GridLayout(2, 1));
 		buttonpanel = new JPanel(new GridLayout(1, 2));
 		
@@ -23,6 +23,9 @@ public class deleteconfirmation extends JFrame{
 		Yes = new JButton("Yes");
 		Yes.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {  
+				Frame1.AddContactToTable();
+				Frame1.deleteSelectedRow(rowToDelete);
+				Frame1.save();
 				dispose();                                
         }   
     });  

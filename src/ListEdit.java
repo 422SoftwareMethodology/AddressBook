@@ -38,4 +38,15 @@ public class ListEdit {
         arrayList.add(toAdd);
         return arrayList;
     }
+    
+    public static ArrayList<Contact> deletor (ArrayList<Contact> arrayList, Contact toDelete){
+    	arrayList.remove(toDelete);
+    	return arrayList;
+    }
+    
+    public static ArrayList<Contact> editor (ArrayList<Contact> arrayList, Contact toEdit){
+    	
+    	return arrayList;
+    	
+    }
 }

@@ -11,7 +11,7 @@ public class Reader {
 
         String csvFile = fileLocation;
         String line = "";
-        String cvsSplitBy = ",";
+        String tvsSplitBy = "\t";
         
         ArrayList<Contact> tempContactList = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class Reader {
 
             while ((line = br.readLine()) != null) {
                 // contact array of a single person, use comma to delimit
-                String[] infoArr = line.split(cvsSplitBy);       
+                String[] infoArr = line.split(tvsSplitBy);       
                 Contact tempContact = new Contact(infoArr[0],infoArr[1],infoArr[2],infoArr[3],
                         infoArr[4],infoArr[5],infoArr[6], infoArr[7]);
                 tempContactList.add(tempContact);

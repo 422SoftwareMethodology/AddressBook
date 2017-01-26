@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +20,7 @@ public class PersonInfo extends JFrame{
 	private JButton Done, Cancel;
 	private String inputfname;
 	private Contact tempContact;
-	public PersonInfo(){
+	public PersonInfo(ArrayList<Contact> openContactList){
 		super("Contact Info!");
 		tempContact = new Contact(" ", " ", " ", " ", " ", " ", " ", " ");
 		setLayout(new BorderLayout());
@@ -55,7 +56,7 @@ public class PersonInfo extends JFrame{
 				tempContact.set_city(c.getText());
 				tempContact.set_state(s.getText());
 				tempContact.set_zip(zip.getText());
-				AddressBook.openContactList.add(tempContact);
+				openContactList.add(tempContact);
 				Frame1.AddContactToTable();
 				dispose();                                //after customer click the button, close the current window and save data
         }   

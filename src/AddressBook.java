@@ -15,24 +15,16 @@ import java.util.ArrayList;
 
 public class AddressBook {
     
-	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
-	public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", "zero");
+	//public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
+	//public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", "zero");
 	
         public static void main(String[] args) throws FileNotFoundException {
             
-        String fileLoc = new File("test.csv").getAbsolutePath();
         Menu frame = new Menu();
 		frame.setVisible(true);
         
-        Writer.writer();
-        openContactList = Reader.reader(fileLoc);
         
-        Display.display(openContactList);
-        System.out.println("\n~~~~~~~~Gonna get my Last Name sort on!~~~~~~~\n");
-        Sorter.sortByLastname(openContactList);
-        Display.display(openContactList);
-        ListEdit.finder(openContactList, "Zardoz");
-        ListEdit.finder(openContactList, "AintGonnaFindIt");
+        
     }
         
         
