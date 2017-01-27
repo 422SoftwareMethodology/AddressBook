@@ -145,7 +145,7 @@ public class Frame1 extends JFrame{
 		
 		AddContactToTable(); // This is the display refresh
 		
-		setSize(500,500);          //set frame size
+		setSize(1000,500);          //set frame size
 		setVisible(true);
 	}
 	
