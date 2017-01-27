@@ -156,17 +156,17 @@ public class Frame1 extends JFrame{
 		    }
 		}
 		String firstName = " ", lastName = " ", phoneNumber = " ", address = " ", address2 = " ", city = " ", state = " ", zip = " ";
-		for(int i = 0; i <  openContactList.size(); ++i){
+		for(int i = 0; i < openContactList.size(); ++i){
 			firstName = openContactList.get(i).get_firstName();
 			lastName = openContactList.get(i).get_lastName();
 			phoneNumber = openContactList.get(i).get_phoneNumber();
 			address = openContactList.get(i).get_address();
-			address2 = openContactList.get(i).get_address();
+			address2 = openContactList.get(i).get_address2();
 			city = openContactList.get(i).get_city();
 			state = openContactList.get(i).get_state();
 			zip = openContactList.get(i).get_zip();
 			
-			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state};
+			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip };
 			Frame1.tableModel.addRow(data);
 		}
 	}	

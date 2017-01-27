@@ -58,7 +58,7 @@ public class PersonInfo extends JFrame{
 					tempContact.set_lastName(lname.getText());
 					tempContact.set_phoneNumber(phonenum.getText());
 					tempContact.set_address(a1.getText());
-					tempContact.set_address(a2.getText());
+					tempContact.set_address2(a2.getText());
 					tempContact.set_city(c.getText());
 					tempContact.set_state(s.getText());
 					tempContact.set_zip(zip.getText());
