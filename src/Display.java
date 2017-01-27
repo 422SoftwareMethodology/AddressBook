@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 
-public class Display {
-    
-    public static void display (ArrayList<Contact> contactArrayList){
-    
+public class Display {   
+    public static void display (ArrayList<Contact> contactArrayList){ 
         int arrayListSize = contactArrayList.size();
          
         for (int i = 0; i < arrayListSize; i++){
@@ -17,8 +15,6 @@ public class Display {
         System.out.println("City: " + focusContact.get_city());
         System.out.println("State: " + focusContact.get_state());
         System.out.println("Zip Code: " + focusContact.get_zip());
-        }
-        
+        }   
     }
-    
 }

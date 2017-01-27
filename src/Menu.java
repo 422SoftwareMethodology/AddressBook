@@ -89,15 +89,11 @@ public class Menu extends JFrame{
 		table = new JTable(obj, columnNames);  
 		TableColumn column = null;  
         int colunms = table.getColumnCount();  
-        for(int i = 0; i < colunms; i++)  
-        {  
+        for(int i = 0; i < colunms; ++i) {  
             column = table.getColumnModel().getColumn(i);  
-            /*��ÿһ�е�Ĭ�Ͽ������Ϊ100*/  
             column.setPreferredWidth(500);  
         }  
-        /* 
-         * ����JTable�Զ������б��״̬���˴�����Ϊ�ر� 
-         */  
+
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  
 		sc = new JScrollPane(table);
 		

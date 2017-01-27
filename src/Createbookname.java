@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,8 +38,7 @@ public class Createbookname extends JFrame{
 		
 		add(namepanel, BorderLayout.CENTER);   //set panel location
 		setSize(700,70);   //set frame size
-		setVisible(true);
-		
+		setVisible(true);	
 	}
 
 	public static String getInputaddressbook() {
@@ -50,5 +48,4 @@ public class Createbookname extends JFrame{
 	public void setInputaddressbook(String inputaddressbook) {
 		this.inputaddressbook = inputaddressbook;
 	}
-
 }
