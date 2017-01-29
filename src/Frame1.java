@@ -34,7 +34,7 @@ public class Frame1 extends JFrame{
 	
 	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
 	
-	public Frame1(){  // This is the main interface of addressbook
+	public Frame1(String fileLoc){  // This is the main interface of addressbook
 		super("Addressbook!");
 		setLayout(new BorderLayout());
 		
@@ -47,13 +47,16 @@ public class Frame1 extends JFrame{
             public void actionPerformed(ActionEvent e) {  
                 PersonInfo p1 = new PersonInfo(openContactList);
                 p1.setLocation(150, 100);
-            }   
+            }
         });  
 		
 		
 		
 		//Setting file location for this instance<~~~~~~~~~~~~~~~~~~ defaults to local path
-		String fileLoc = new File("test.tsv").getAbsolutePath(); 
+		//String fileLoc = new File("test.tsv").getAbsolutePath();
+		
+		
+		
 		openContactList = Reader.reader(fileLoc); 
 		
 		
@@ -130,16 +133,32 @@ public class Frame1 extends JFrame{
 		add(scroll, BorderLayout.CENTER);
 		
 		//Mouse Interactions~~~~~~~~~~~~~
-		 table1.addMouseListener(new MouseAdapter() { 
+		 table1.addMouseListener(new MouseAdapter() { //click on cell
 		        public void mousePressed(MouseEvent e) {
 
 		            int row = table1.rowAtPoint(e.getPoint());
-
 		            table1.getSelectionModel().setSelectionInterval(row, row);
 		            System.out.println(row);
 		            rowSelected = row;
 		        }
 		    });
+		 // Click header to sort
+		 table1.getTableHeader().addMouseListener(new MouseAdapter(){
+			 public void mouseClicked(MouseEvent e){
+				 int col = table1.columnAtPoint(e.getPoint());
+				 if (col == 1){
+					 System.out.println("Sorting by lastName");
+					 Sorter.sortByLastname(openContactList);
+					 AddContactToTable();
+				 }
+				 if (col == 7){
+					 System.out.println("Sorting by zip");
+					 Sorter.sortByZip(openContactList);
+					 AddContactToTable();
+				 }
+			 }
+			 
+		 });
 		 
 		 
 		
@@ -191,7 +210,6 @@ public class Frame1 extends JFrame{
 	        tempContactList.add(tempContact);
 	    }
 	    //Display.display(tempContactList);
-	    //System.out.println("Hey, Im alive!");
 	    return tempContactList;
 	}
 	

@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.TableColumn;
+import javax.swing.JFileChooser;
 
 //Menu Interface
 @SuppressWarnings("serial")
@@ -27,6 +28,9 @@ public class Menu extends JFrame{
 		super("Welcome!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setLayout(new BorderLayout());
+		
+		JFileChooser chooser = new JFileChooser();
+		
 		
 		//Container c= getContentPane();
 		//c.setLayout(new BorderLayout());
@@ -46,8 +50,11 @@ public class Menu extends JFrame{
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
-				Open.FOpen();
-				Frame1 f1 = new Frame1();
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.showOpenDialog(null);
+				String fileLoc = chooser.getSelectedFile().getAbsolutePath();
+				//Open.FOpen();
+				Frame1 f1 = new Frame1(fileLoc);
 				f1.setLocation(150, 50);
         }   
     });  
@@ -57,6 +64,15 @@ public class Menu extends JFrame{
 		
 		importbutton = new JButton("import");
 		importbutton.setBackground(Color.green);
+		importbutton.addActionListener(new ActionListener(){  
+			public void actionPerformed(ActionEvent e) {    
+				
+				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				chooser.showOpenDialog(null);
+		        System.out.println(chooser.getSelectedFile());
+				
+        }   
+    });  
 		
 		exportbutton = new JButton("export");
 		exportbutton.setBackground(Color.green);

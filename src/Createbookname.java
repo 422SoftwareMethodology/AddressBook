@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,7 +29,8 @@ public class Createbookname extends JFrame{
 		submit.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {  //jump to the addressbook interface
 				dispose();                                //after customer click the button, close the current window 
-				Frame1 f1 = new Frame1();
+				String fileLoc = new File("NewAddressBook.tsv").getAbsolutePath(); // Default Save Path
+				Frame1 f1 = new Frame1(fileLoc);
 				f1.setLocation(200, 50);
         }   
     });  
