@@ -111,7 +111,7 @@ public class PersonInfo extends JFrame{
 						tempContact.set_city(c.getText());
 						tempContact.set_state(s.getText());
 						tempContact.set_zip(zip.getText());
-						tempContact.set_email(email.getText());
+						//tempContact.set_email(email.getText());
 						openContactList.add(tempContact);
 						Frame1.AddContactToTable();
 						dispose();                                //after customer click the button, close the current window and save data
