@@ -9,14 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class prompt1 extends JFrame{
+public class prompt2 extends JFrame{
 	private JButton OKButton;
 	private JLabel Warning, empty1, empty2;
 	private JPanel panel, buttonpanel;
-	public prompt1(){
+	public prompt2(){
 		panel = new JPanel(new GridLayout(2, 1));
 		buttonpanel = new JPanel(new GridLayout(1, 3));
-		Warning = new JLabel("   Please enter a firstname or lastname and at least one attribute except email!");
+		Warning = new JLabel("                       Please enter the standard phonenumber!");
 		OKButton = new JButton("OK!");
 		OKButton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) { 
@@ -32,7 +32,7 @@ public class prompt1 extends JFrame{
 		add(panel, BorderLayout.NORTH);
 		add(buttonpanel, BorderLayout.CENTER);
 		
-		setSize(520,90);
+		setSize(450,90);
 		setVisible(true);
 	}
 }
