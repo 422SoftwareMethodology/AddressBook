@@ -46,6 +46,8 @@ public class Menu extends JFrame{
 	                c1.setLocation(100, 50);
 	            }   
 	        });  
+		
+		
 		openbutton = new JButton("Open");
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  

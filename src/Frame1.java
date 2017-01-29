@@ -62,7 +62,22 @@ public class Frame1 extends JFrame{
 		
 		
 		editbutton = new JButton("Edit");            //these buttons' functions depends on backend, need discuss together.
-		editbutton.setBackground(Color.green);       //set buttons' color, it works for windows, but fail on Mac. 
+		editbutton.setBackground(Color.green);       //set buttons' color, it works for windows, but fail on Mac.
+		editbutton.addActionListener(new ActionListener(){  //jump to person info interface
+            public void actionPerformed(ActionEvent e) {
+            	// String editFirstName, String editLastName, String editPhoneNumber, String editAddress1, String editAddress2, String editCity, String editState, String editZip
+            	String tempFirstName = (String) table1.getValueAt(rowSelected, 0);
+            	String tempLastName = (String) table1.getValueAt(rowSelected, 1);
+            	String tempPhoneNumber = (String) table1.getValueAt(rowSelected, 2);
+            	String tempAddress1 = (String) table1.getValueAt(rowSelected, 3);
+            	String tempAddress2 = (String) table1.getValueAt(rowSelected, 4);
+            	String tempCity = (String) table1.getValueAt(rowSelected, 5);
+            	String tempState = (String) table1.getValueAt(rowSelected, 6);
+            	String tempZip = (String) table1.getValueAt(rowSelected, 7);
+            	PersonInfoEdit p1 = new PersonInfoEdit(openContactList, rowSelected, tempFirstName, tempLastName, tempPhoneNumber, tempAddress1, tempAddress2, tempCity, tempState, tempZip);
+                p1.setLocation(150, 100);
+            }   
+        });
 		
 		deletebutton = new JButton("Delete");
 		deletebutton.setBackground(Color.green);
