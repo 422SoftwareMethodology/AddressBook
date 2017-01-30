@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +31,6 @@ public class Frame1 extends JFrame{
 	private static JTable table1;
 	private static DefaultTableModel tableModel;
 	public int rowSelected = -1;
-	
 	
 	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
 	
@@ -108,8 +108,23 @@ public class Frame1 extends JFrame{
 	            }  
 		});
 		
+		
+		JFileChooser chooser =new JFileChooser();
 		saveasbutton = new JButton("Save as");
 		saveasbutton.setBackground(Color.green);
+		saveasbutton.addActionListener(new ActionListener(){
+			 public void actionPerformed(ActionEvent e) {
+				chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				chooser.showSaveDialog(null);
+				
+				String path = chooser.getSelectedFile().getAbsolutePath();
+				String filename = chooser.getSelectedFile().getName();
+				
+				//System.out.println("Filename: " + filename + "  Path: " + path);
+				saveAs (path);
+				
+	            }  
+		});
 		
 		namelabel = new JLabel("           Enter the name:");
 		ta= new JTextField();                     //the area customer can text
@@ -243,6 +258,18 @@ public class Frame1 extends JFrame{
 			e1.printStackTrace();
 		}
 		 //Display.display(AddressBook.openContactList);
+	}
+	
+	public static void saveAs (String path){
+		 openContactList = AddTableToContact();
+		 try {
+			Writer.saveAsWriter(openContactList, path);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 	}
 }
 
