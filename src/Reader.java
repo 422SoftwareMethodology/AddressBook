@@ -9,17 +9,17 @@ public class Reader {
 
     public static ArrayList<Contact> reader(String fileLocation) {
 
-        String csvFile = fileLocation;
+        String tsvFile = fileLocation;
         String line = "";
-        String tvsSplitBy = "\t";
+        String tsvSplitBy = "\t";
         
         ArrayList<Contact> tempContactList = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(tsvFile))) {
 
             while ((line = br.readLine()) != null) {
                 // contact array of a single person, use comma to delimit
-                String[] infoArr = line.split(tvsSplitBy);
+                String[] infoArr = line.split(tsvSplitBy);
                 if (infoArr.length >= 7){
                 	System.out.println("DOINGIT");
                 	  Contact tempContact = new Contact(infoArr[0],infoArr[1],infoArr[2],infoArr[3],
@@ -40,7 +40,7 @@ public class Reader {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return tempContactList;
     }

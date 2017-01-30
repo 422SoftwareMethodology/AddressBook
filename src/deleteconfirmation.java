@@ -25,7 +25,7 @@ public class deleteconfirmation extends JFrame{
 			public void actionPerformed(ActionEvent e) {  
 				Frame1.AddContactToTable();
 				Frame1.deleteSelectedRow(rowToDelete);
-				Frame1.save();
+				Frame1.save(Createbookname.bookname.getText().toString());
 				dispose();                                
         }   
     });  

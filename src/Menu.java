@@ -55,7 +55,6 @@ public class Menu extends JFrame{
 				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				chooser.showOpenDialog(null);
 				String fileLoc = chooser.getSelectedFile().getAbsolutePath();
-				//Open.FOpen();
 				Frame1 f1 = new Frame1(fileLoc);
 				f1.setLocation(150, 50);
         }   
