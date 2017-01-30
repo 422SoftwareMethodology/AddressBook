@@ -9,9 +9,11 @@ public class Contact implements Comparable<Contact> {
 	private String _city;
 	private String _state;
 	private String _zip;
+	private String _email;
+	private String _facebook;
 	
 	public Contact (String firstName,String lastName, String phoneNumber, 
-                    String address, String city, String state, String address2, String zip) {
+                    String address, String city, String state, String address2, String zip, String email, String facebook) {
             
             set_firstName(firstName);
             set_lastName(lastName);
@@ -21,6 +23,8 @@ public class Contact implements Comparable<Contact> {
             set_city(city);
             set_state(state);
             set_zip(zip);
+            set_email(email);
+            set_facebook(facebook);
         
         }
         
@@ -86,6 +90,22 @@ public class Contact implements Comparable<Contact> {
 
 	public void set_zip(String zip) {
 		this._zip = zip;
+	}
+	
+	public String get_email() {
+		return _email;
+	}
+
+	public void set_email(String zip) {
+		this._email = zip;
+	}
+	
+	public String get_facebook() {
+		return _facebook;
+	}
+
+	public void set_facebook(String zip) {
+		this._facebook = zip;
 	}
 
 	@Override

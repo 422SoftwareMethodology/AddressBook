@@ -74,7 +74,9 @@ public class Frame1 extends JFrame{
             	String tempCity = (String) table1.getValueAt(rowSelected, 5);
             	String tempState = (String) table1.getValueAt(rowSelected, 6);
             	String tempZip = (String) table1.getValueAt(rowSelected, 7);
-            	PersonInfoEdit p1 = new PersonInfoEdit(openContactList, rowSelected, tempFirstName, tempLastName, tempPhoneNumber, tempAddress1, tempAddress2, tempCity, tempState, tempZip);
+            	String tempEmail = (String) table1.getValueAt(rowSelected, 8);
+            	String tempFacebook = (String) table1.getValueAt(rowSelected, 9);
+            	PersonInfoEdit p1 = new PersonInfoEdit(openContactList, rowSelected, tempFirstName, tempLastName, tempPhoneNumber, tempAddress1, tempAddress2, tempCity, tempState, tempZip, tempEmail, tempFacebook);
                 p1.setLocation(150, 100);
             }   
         });
@@ -143,7 +145,7 @@ public class Frame1 extends JFrame{
 		TextPanel.add(searchbutton);
 
         String[] columnNames =  
-            { "firstname", "lastname", "phonenumber", "address", "address2", "city", "state", "zipcode" };  
+            { "Firstname", "Lastname", "Phonenumber", "Address", "Address2", "City", "State", "Zipcode", "Email", "Facebook" };  
         tableModel = new DefaultTableModel(columnNames, 0);
 		table1 = new JTable(tableModel);
 		
@@ -204,7 +206,7 @@ public class Frame1 extends JFrame{
 		        tableModel.removeRow(i);
 		    }
 		}
-		String firstName = " ", lastName = " ", phoneNumber = " ", address = " ", address2 = " ", city = " ", state = " ", zip = " ";
+		String firstName = " ", lastName = " ", phoneNumber = " ", address = " ", address2 = " ", city = " ", state = " ", zip = " ", email = " ", facebook = " ";
 		for(int i = 0; i < openContactList.size(); ++i){
 			firstName = openContactList.get(i).get_firstName();
 			lastName = openContactList.get(i).get_lastName();
@@ -214,8 +216,10 @@ public class Frame1 extends JFrame{
 			city = openContactList.get(i).get_city();
 			state = openContactList.get(i).get_state();
 			zip = openContactList.get(i).get_zip();
+			email = openContactList.get(i).get_email();
+			facebook = openContactList.get(i).get_facebook();
 			
-			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip };
+			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip, email, facebook };
 			Frame1.tableModel.addRow(data);
 		}
 	}	
@@ -236,7 +240,7 @@ public class Frame1 extends JFrame{
 	            //System.out.println(tableModel.getValueAt(i,j));
 	            contactInfo [j] = (String) tableModel.getValueAt(i,j);
 	        }
-	        Contact tempContact = new Contact(contactInfo[0],contactInfo[1],contactInfo[2],contactInfo[3],contactInfo[4],contactInfo[5],contactInfo[6],contactInfo[7]);
+	        Contact tempContact = new Contact(contactInfo[0],contactInfo[1],contactInfo[2],contactInfo[3],contactInfo[4],contactInfo[5],contactInfo[6],contactInfo[7], contactInfo[8], contactInfo [9]);
 	        tempContactList.add(tempContact);
 	    }
 	    //Display.display(tempContactList);

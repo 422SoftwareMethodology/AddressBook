@@ -28,6 +28,10 @@ public class Writer {
                  sb.append(focusContact.get_state()); //State 6
                  sb.append('\t');
                  sb.append(focusContact.get_zip()); // zip 7
+                 sb.append('\t');
+                 sb.append(focusContact.get_email()); // email 8
+                 sb.append('\t');
+                 sb.append(focusContact.get_facebook()); // facebook 9
                  sb.append('\n'); // end of contact
              }
              
@@ -60,6 +64,10 @@ public class Writer {
                  sb.append(focusContact.get_state()); //State 6
                  sb.append('\t');
                  sb.append(focusContact.get_zip()); // zip 7
+                 sb.append('\t');
+                 sb.append(focusContact.get_email()); // email 8
+                 sb.append('\t');
+                 sb.append(focusContact.get_facebook()); // facebook 9
                  sb.append('\n'); // end of contact
              }
              
