@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 //person info interface
 @SuppressWarnings("serial")
 public class PersonInfo extends JFrame{
@@ -64,9 +63,9 @@ public class PersonInfo extends JFrame{
 					checknum += 1;
 				if(zip.getText().isEmpty())
 					checknum += 1;
-				if(email.getText().isEmpty())
+				if(em.getText().isEmpty())
 					checknum += 1;
-				if(facebook.getText().isEmpty())
+				if(f.getText().isEmpty())
 					checknum += 1;
 				
 				if(fname.getText().isEmpty() && lname.getText().isEmpty()){
@@ -80,7 +79,7 @@ public class PersonInfo extends JFrame{
 					}
 				
 				else{
-					if(zip.getText().isEmpty() && phonenum.getText().isEmpty()){
+					if(zip.getText().isEmpty()){
 						tempContact.set_firstName(fname.getText());
 						tempContact.set_lastName(lname.getText());
 						tempContact.set_phoneNumber(phonenum.getText());
@@ -97,18 +96,15 @@ public class PersonInfo extends JFrame{
 					}
 					
 					else if((zip.getText().isEmpty() == false)&&(checkzip(zip.getText()) == false)){
-							prompt3 p3 = new prompt3();
-							p3.setLocation(500, 200);
-					}
-					
-					else if((phonenum.getText().isEmpty() == false)&&(checkphonenum(phonenum.getText()) == false)){
-							prompt2 p2 = new prompt2();
-							p2.setLocation(400, 250);
+						promptzip p2 = new promptzip(openContactList);
+						p2.setLocation(500, 200);
 					}
 					
 					/*else if((email.getText().isEmpty() == false)&&(checkemail(email.getText()) == false)){
 							prompt4 p4 = new prompt4();
 							p4.setLocation(450, 300);
+							tempContact.set_email(em.getText());
+							tempContact.set_facebook(f.getText());
 					}*/
 					else{
 						tempContact.set_firstName(fname.getText());
@@ -180,32 +176,47 @@ public class PersonInfo extends JFrame{
 		}
 		return false;
 	}
-	public boolean checkphonenum(String str){
-		if(str.length() == 7 || str.length() == 10){
-			if(str.length() == 7){
-				String dig7 = "\\d{7}";
-				boolean b3 = str.matches(dig7);
-				return b3;
-			}
-			else if(str.length() == 10){
-				String dig10 = "\\d{10}";
-				boolean b4 = str.matches(dig10);
-				return b4;
-			}
-		}
-		return false;
-	}
 	
-	/*public boolean checkemail(String str){
-		String e = "\\W@\\W";
-		boolean b5 = str.matches(e);
-		return b5;
-	}*/
-	/*public boolean hasblank(String s){
-		int i = s.indexOf(" ");
-		if(i >= 0)
-			return true;
-		else
-			return false;
-		}*/
+	class promptzip extends JFrame{
+		private JButton SaveButton, NoButton;
+		private JLabel Warning;
+		private JPanel panel, buttonpanel;
+		public promptzip(ArrayList<Contact> openContactList){
+			panel = new JPanel(new GridLayout(1, 1));
+			buttonpanel = new JPanel(new GridLayout(1, 2));
+			Warning = new JLabel("                             Please enter the zip, or you still want to save ");
+			SaveButton = new JButton("Save");
+			SaveButton.addActionListener(new ActionListener(){  
+				public void actionPerformed(ActionEvent e) { 
+					tempContact.set_firstName(fname.getText());
+					tempContact.set_lastName(lname.getText());
+					tempContact.set_phoneNumber(phonenum.getText());
+					tempContact.set_address(a1.getText());
+					tempContact.set_address2(a2.getText());
+					tempContact.set_city(c.getText());
+					tempContact.set_state(s.getText());
+					tempContact.set_zip(zip.getText());
+					tempContact.set_email(em.getText());
+					tempContact.set_facebook(f.getText());
+					openContactList.add(tempContact);
+					Frame1.AddContactToTable();
+					dispose();
+					Cancel.doClick();
+	        }   
+	    }); 
+			NoButton = new JButton("No");
+			NoButton.addActionListener(new ActionListener(){  
+				public void actionPerformed(ActionEvent e) { 
+					dispose();
+	        }   
+	    }); 
+			panel.add(Warning);
+			buttonpanel.add(SaveButton);
+			buttonpanel.add(NoButton);
+			add(panel, BorderLayout.NORTH);
+			add(buttonpanel, BorderLayout.CENTER);
+			setSize(450,90);
+			setVisible(true);
+		}
+	}
 }
