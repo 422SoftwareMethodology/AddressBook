@@ -198,6 +198,8 @@ public class PersonInfoEdit extends JFrame{
 					tempContact.set_city(c.getText());
 					tempContact.set_state(s.getText());
 					tempContact.set_zip(zip.getText());
+					tempContact.set_email(em.getText());
+					tempContact.set_facebook(f.getText());
 					openContactList.add(tempContact);
 					Frame1.AddContactToTable();
 					Frame1.deleteSelectedRow(rowSelected);
