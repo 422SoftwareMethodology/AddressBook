@@ -56,23 +56,13 @@ public class Frame1 extends JFrame{
                 p1.setLocation(150, 100);
             }
         });  
-		
-		
-		
-		//Setting file location for this instance<~~~~~~~~~~~~~~~~~~ defaults to local path
-		//String fileLoc = new File("test.tsv").getAbsolutePath();
-		
-		
-		
+
 		openContactList = Reader.reader(fileLoc); 
-		
-		
 		
 		editbutton = new JButton("Edit");            //these buttons' functions depends on backend, need discuss together.
 		editbutton.setBackground(Color.green);       //set buttons' color, it works for windows, but fail on Mac.
 		editbutton.addActionListener(new ActionListener(){  //jump to person info interface
             public void actionPerformed(ActionEvent e) {
-            	// String editFirstName, String editLastName, String editPhoneNumber, String editAddress1, String editAddress2, String editCity, String editState, String editZip
             	String tempFirstName = (String) table1.getValueAt(rowSelected, 0);
             	String tempLastName = (String) table1.getValueAt(rowSelected, 1);
             	String tempPhoneNumber = (String) table1.getValueAt(rowSelected, 2);
@@ -113,7 +103,7 @@ public class Frame1 extends JFrame{
 		savebutton.setBackground(Color.green);
 		savebutton.addActionListener(new ActionListener(){
 			 public void actionPerformed(ActionEvent e) {
-				save();
+				save(fileLoc);
 	            }  
 		});
 		
@@ -310,10 +300,10 @@ public class Frame1 extends JFrame{
 		}
 	}
 	
-	public static void save (){
+	public static void save (String fileLoc){
 		 openContactList = AddTableToContact();
 		 try {
-			Writer.writer(openContactList);
+			Writer.writer(openContactList, fileLoc);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

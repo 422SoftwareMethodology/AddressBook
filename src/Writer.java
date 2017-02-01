@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Writer {
-     public static void writer(ArrayList<Contact> contactArrayList) throws FileNotFoundException{
-         try (PrintWriter pw = new PrintWriter(new File("NewAddressBook.tsv").getAbsolutePath())) {
+     public static void writer(ArrayList<Contact> contactArrayList, String fileLoc) throws FileNotFoundException {
+         try (PrintWriter pw = new PrintWriter(new File(fileLoc + ".tsv").getAbsolutePath())) {
              StringBuilder sb = new StringBuilder();
              
              int arrayListSize = contactArrayList.size();
