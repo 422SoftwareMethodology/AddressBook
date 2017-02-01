@@ -4,6 +4,10 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -13,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.JFileChooser;
 
@@ -24,6 +29,13 @@ public class Menu extends JFrame{
 	private JLabel titlelabel;
 	private JTextArea text;
 	private JTable table;
+	private int rowSelected = -1;
+	private String bookFolderLoc = System.getProperty("user.dir");
+	private String exportFolderLoc = System.getProperty("user.dir");
+	private ArrayList<Contact> importContacts;
+	private ArrayList<Contact> exportContacts;
+	private static DefaultTableModel tableModel;
+	
 	public Menu(ArrayList<String> addressNames)
 	{
 		super("Welcome!");
@@ -48,14 +60,15 @@ public class Menu extends JFrame{
 	            }   
 	        });  
 		
+
 		
 		openbutton = new JButton("Open");
 		openbutton.setBackground(Color.green);
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
-				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				chooser.showOpenDialog(null);
-				String fileLoc = chooser.getSelectedFile().getAbsolutePath();
+				String fileName = (String) table.getValueAt(rowSelected, 0);
+				String fileLoc = bookFolderLoc + fileName;
+				System.out.println(fileLoc);
 				Frame1 f1 = new Frame1(fileLoc);
 				f1.setLocation(150, 50);
         }   
@@ -63,6 +76,17 @@ public class Menu extends JFrame{
 		
 		deletebutton = new JButton("delete");
 		deletebutton.setBackground(Color.green);
+		deletebutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				String fileName = (String) table.getValueAt(rowSelected, 0);
+				String trimmed = trimTSV(fileName);
+				String fileLocation = bookFolderLoc + fileName;
+				File f = new File(fileLocation);
+				f.delete();
+				addressNames.remove(fileName);
+				refreshTable(addressNames);
+			}
+		});
 		
 		importbutton = new JButton("import");
 		importbutton.setBackground(Color.green);
@@ -72,12 +96,41 @@ public class Menu extends JFrame{
 				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				chooser.showOpenDialog(null);
 		        System.out.println(chooser.getSelectedFile());
-				
+		        importContacts = Reader.reader(chooser.getSelectedFile().getAbsolutePath());
+		        String FileName = getFileName(chooser.getSelectedFile().getAbsolutePath());
+		        String trimmed = trimTSV(FileName);
+		        String newFileLocation = bookFolderLoc + FileName;
+		        try {
+					Writer.writer(importContacts, bookFolderLoc + trimmed);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		        addressNames.add(FileName);
+		        refreshTable(addressNames);
+		        Frame1 f2 = new Frame1(newFileLocation);
+		        f2.setLocation(150, 50);
+		        
+				System.out.println(FileName);
         }   
     });  
 		
 		exportbutton = new JButton("export");
 		exportbutton.setBackground(Color.green);
+		exportbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				String fileName = (String) table.getValueAt(rowSelected, 0);
+				String trimmed = trimTSV(fileName);
+				String fileLoc = bookFolderLoc + fileName;
+				exportContacts = Reader.reader(fileLoc);
+				try {
+					Writer.exportWriter(exportContacts, exportFolderLoc + trimmed);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		quitbutton = new JButton("Quit");
 		quitbutton.setBackground(Color.green);
@@ -100,8 +153,10 @@ public class Menu extends JFrame{
 	    
 		//text = new JTextArea();
 	    String[] columnNames =  
-	            { "                                                                 Addressbook name" };  
-		table = new JTable(obj, columnNames);  
+	            { "                                        Addressbook name" };    
+		tableModel = new DefaultTableModel(columnNames, 0);
+		table = new JTable(tableModel);
+		table.setEnabled(false);
 		TableColumn column = null;  
         int colunms = table.getColumnCount();  
         for(int i = 0; i < colunms; ++i) {  
@@ -111,6 +166,7 @@ public class Menu extends JFrame{
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  
 		sc = new JScrollPane(table);
+		refreshTable(addressNames);
 		
 		//bookmenu = new JMenuBar();
 		
@@ -130,6 +186,63 @@ public class Menu extends JFrame{
 		add(sc, BorderLayout.CENTER);
 		sc.setVisible(true);
 		setSize(500, 500);  //set frame size
+		
+		table.addMouseListener(new MouseAdapter() { // click on cell
+			public void mousePressed(MouseEvent e) {
+				int row = table.rowAtPoint(e.getPoint());
+				int col = table.columnAtPoint(e.getPoint());
+				table.getSelectionModel().setSelectionInterval(row, row);
+				System.out.println(row);
+				rowSelected = row;
+			}
+		});
+	}
+	
+	public void setBookLoc(String bookLoc){
+		bookFolderLoc = bookLoc;
+	}
+	
+	public void setExportLoc(String exportLoc){
+		exportFolderLoc = exportLoc;
+	}
+	
+	public String getFileName(String fileLocation){
+		int length = fileLocation.length();
+		String fileName = "";
+		String tempString = "";
+		for(int i = length - 1; i > 1; i--){
+			tempString = fileLocation.substring(i, i+1);
+			if(tempString.equals("\\") || tempString.equals("/")){
+				break;
+			}
+			else{
+				fileName = tempString + fileName;
+			}
+		}
+		return fileName;
+	}
+	
+	public String trimTSV(String fileName){
+		int length = fileName.length();
+		String returnName = fileName.substring(0, length-4);
+		System.out.println(returnName);
+		return returnName;
+	}
+	
+	public void refreshTable(ArrayList<String> bookNames){
+		if (tableModel.getRowCount() > 0) {
+			for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
+				tableModel.removeRow(i);
+			}
+		}
+		String bookName = "";
+		for(int i = 0; i < bookNames.size(); i++){
+			bookName = bookNames.get(i);
+			Object[] data = { bookName };
+			Menu.tableModel.addRow(data);
+			
+		}
+		
 	}
 	
 }

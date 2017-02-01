@@ -17,18 +17,24 @@ public class AddressBook {
 
 	public static void main(String args[]) throws FileNotFoundException {
 	final ArrayList<String> AddressBookNames = new ArrayList<String>();
+	String bookLocation;
+	String exportLocation;
+	
     if(OSDetector.isWindows()){
-        String currentDirectory = System.getProperty("user.dir") + "\\" + "AddressBooks";
-        System.out.println(currentDirectory);
-        File f = new File(currentDirectory);
+        bookLocation = System.getProperty("user.dir") + "\\" + "AddressBooks\\";
+        exportLocation = System.getProperty("user.dir") + "\\" + "Exports\\";
+        System.out.println(bookLocation);
+        File f = new File(bookLocation);
         if(!f.exists()){
             System.out.print("File Doesn't Exists. Creating Folder");
-            new File(currentDirectory).mkdir();
+            new File(bookLocation).mkdir();
+            new File(exportLocation).mkdir();
+            
         }
         else{
             System.out.println("File Exits");
 
-            File folder = new File(currentDirectory);
+            File folder = new File(bookLocation);
             File[] listOfFiles = folder.listFiles();
 
             for(int i = 0; i < listOfFiles.length; i++){
@@ -38,12 +44,15 @@ public class AddressBook {
         }
     }
     else{
-        String makeDirectory = System.getProperty("user.dir") + "/" + "AddressBooks";
-        System.out.println(makeDirectory);
-        File f1 = new File(makeDirectory);
+        bookLocation = System.getProperty("user.dir") + "/" + "AddressBooks/";
+        exportLocation = System.getProperty("user.dir") + "/" + "Exports/";
+        System.out.println(bookLocation);
+        File f1 = new File(bookLocation);
         if(!f1.exists()){
             System.out.println("File Doesn't Exist. Creating Folder");
-            new File(makeDirectory);
+            exportLocation = System.getProperty("user.dir") + "/" + "Exports/";
+            new File(bookLocation).mkdir();
+            new File(exportLocation).mkdir();
         }
         else{
             System.out.println("File Exists");
@@ -52,6 +61,8 @@ public class AddressBook {
 
 
     Menu frame = new Menu(AddressBookNames);
+    frame.setBookLoc(bookLocation);
+    frame.setExportLoc(exportLocation);
     frame.setVisible(true);
 }
 
