@@ -9,6 +9,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -185,6 +187,13 @@ public class Frame1 extends JFrame{
 		      		  //Try catch for bad URL
 		      		  try {
 		      		editorPane.setPage(URL);
+	      			 try {
+						URI uri = new URI(URL);
+						Open.openURI(uri);
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		      		  } catch (IOException ex) {
 		      		brokenURL = 1;
 		      		System.err.println("Invalid URL: " + ex);
@@ -195,9 +204,9 @@ public class Frame1 extends JFrame{
 		      			 @Override
 		      			 public void hyperlinkUpdate(HyperlinkEvent event) {
 		      			     if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-		      			   try {
-		      			 editorPane.setPage(event.getURL());
-		      			   } catch (IOException ioe) {
+		      			    	 try {
+		      			    		 editorPane.setPage(event.getURL());
+		      			    	 } catch (IOException ioe) {
 		      				   System.err.println("Error loading url from link: " + ioe);
 		      			   }
 		      			     }
@@ -205,15 +214,16 @@ public class Frame1 extends JFrame{
 		      		 };	 		      		 
 		      		 //Frame for hyperlink popup window
 		      		 if(brokenURL == 0){
-		      		  editorPane.addHyperlinkListener(listener);
+		      		  /*editorPane.addHyperlinkListener(listener);
 		      		  editorPane.setEditable(false);
 		      		  JScrollPane pane = new JScrollPane(editorPane);
 		      		  cPane.add(pane, BorderLayout.CENTER);
 		      		  jFrame.setSize(1400, 600);
-		      		  jFrame.setVisible(true);
+		      		  jFrame.setVisible(true);*/
+		      			 System.out.println("Success");
 		      		 }
 		      		 else{
-		      			 System.out.println("Resest URL");
+		      			 System.out.println("Reset URL");
 		      			 brokenURL = 0;
 		      		 }
 		      		 
