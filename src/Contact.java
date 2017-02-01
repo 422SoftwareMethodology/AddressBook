@@ -11,23 +11,23 @@ public class Contact implements Comparable<Contact> {
 	private String _zip;
 	private String _email;
 	private String _facebook;
-	
-	public Contact (String firstName,String lastName, String phoneNumber, 
-                    String address, String city, String state, String address2, String zip, String email, String facebook) {
-            
-            set_firstName(firstName);
-            set_lastName(lastName);
-            set_phoneNumber(phoneNumber);
-            set_address(address);
-            set_address2(address2);
-            set_city(city);
-            set_state(state);
-            set_zip(zip);
-            set_email(email);
-            set_facebook(facebook);
-        
-        }
-        
+
+	public Contact(String firstName, String lastName, String phoneNumber, String address, String city, String state,
+			String address2, String zip, String email, String facebook) {
+
+		set_firstName(firstName);
+		set_lastName(lastName);
+		set_phoneNumber(phoneNumber);
+		set_address(address);
+		set_address2(address2);
+		set_city(city);
+		set_state(state);
+		set_zip(zip);
+		set_email(email);
+		set_facebook(facebook);
+
+	}
+
 	public String get_firstName() {
 		return _firstName;
 	}
@@ -59,7 +59,7 @@ public class Contact implements Comparable<Contact> {
 	public void set_address(String address) {
 		this._address = address;
 	}
-	
+
 	public String get_address2() {
 		return _address2;
 	}
@@ -91,7 +91,7 @@ public class Contact implements Comparable<Contact> {
 	public void set_zip(String zip) {
 		this._zip = zip;
 	}
-	
+
 	public String get_email() {
 		return _email;
 	}
@@ -99,7 +99,7 @@ public class Contact implements Comparable<Contact> {
 	public void set_email(String zip) {
 		this._email = zip;
 	}
-	
+
 	public String get_facebook() {
 		return _facebook;
 	}
@@ -112,6 +112,5 @@ public class Contact implements Comparable<Contact> {
 	public int compareTo(Contact c) {
 		return (this._lastName).compareTo(c._lastName);
 	}
-	
-	
+
 }

@@ -20,7 +20,7 @@ public class Reader {
             while ((line = br.readLine()) != null) {
                 // contact array of a single person, use comma to delimit
                 String[] infoArr = line.split(tsvSplitBy);
-                if (infoArr.length >= 7){
+                if (infoArr.length >= 8){
                 	System.out.println("DOINGIT");
                 	  Contact tempContact = new Contact(infoArr[0],infoArr[1],infoArr[2],infoArr[3],
                               infoArr[4],infoArr[5],infoArr[6], infoArr[7], " ", " ");

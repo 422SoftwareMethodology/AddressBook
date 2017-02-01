@@ -12,18 +12,17 @@ import java.io.FileNotFoundException;
 //openContactList: the current working ArrayList
 
 public class AddressBook {
-    
-	//public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
-	//public Contact myContact = new Contact("Alex", "Costello", "Butt", "Turdd", "Poop", "Nipz", "buttz", "zero");
-	
-        public static void main(String[] args) throws FileNotFoundException {
-            
-        Menu frame = new Menu();
+
+	// public static ArrayList<Contact> openContactList = new
+	// ArrayList<Contact>();
+	// public Contact myContact = new Contact("Alex", "Costello", "Butt",
+	// "Turdd", "Poop", "Nipz", "buttz", "zero");
+
+	public static void main(String[] args) throws FileNotFoundException {
+
+		Menu frame = new Menu();
 		frame.setVisible(true);
-        
-        
-        
-    }
-        
-        
+
+	}
+
 }
