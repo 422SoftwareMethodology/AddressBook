@@ -12,8 +12,7 @@ public class Contact implements Comparable<Contact> {
 	private String _email;
 	private String _facebook;
 
-	public Contact(String firstName, String lastName, String phoneNumber, String address, String city, String state,
-			String address2, String zip, String email, String facebook) {
+	public Contact(String firstName, String lastName, String phoneNumber, String address, String address2, String city, String state, String zip, String email, String facebook) {
 
 		set_firstName(firstName);
 		set_lastName(lastName);
