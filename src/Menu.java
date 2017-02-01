@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,7 +24,7 @@ public class Menu extends JFrame{
 	private JLabel titlelabel;
 	private JTextArea text;
 	private JTable table;
-	public Menu()
+	public Menu(ArrayList<String> addressNames)
 	{
 		super("Welcome!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,20 +87,17 @@ public class Menu extends JFrame{
         }   
     });  
 		
-		  Object[][] obj = new Object[1][1];  
-	        for (int i = 0; i < 1; i++)  
+		  Object[][] obj = new Object[addressNames.size()][1];  
+	        for (int i = 0; i < addressNames.size(); i++)  
 	        {  
 	            for (int j = 0; j < 1; j++)  
 	            {  
-	                switch (j)  
-	                {  
-	                case 0:  
-	                    obj[i][j] = "Jack";  
-	                    break;  
-	    
-	                }  
+	                String temp = addressNames.get(i);
+	                obj[i][j] = temp;
 	            }  
 	        }  
+	        
+	    
 		//text = new JTextArea();
 	    String[] columnNames =  
 	            { "                                                                 Addressbook name" };  
