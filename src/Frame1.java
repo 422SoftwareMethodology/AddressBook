@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,9 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.event.HyperlinkEvent;
 
 //addressbook interface
 @SuppressWarnings("serial")
@@ -31,6 +36,8 @@ public class Frame1 extends JFrame{
 	private static JTable table1;
 	private static DefaultTableModel tableModel;
 	public int rowSelected = -1;
+	public String URL;
+	public int brokenURL = 0;
 	
 	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
 	
@@ -166,14 +173,65 @@ public class Frame1 extends JFrame{
 		
 		//Mouse Interactions~~~~~~~~~~~~~
 		 table1.addMouseListener(new MouseAdapter() { //click on cell
-		        public void mousePressed(MouseEvent e) {
-
+		        public void mousePressed(MouseEvent e) {		 
 		            int row = table1.rowAtPoint(e.getPoint());
+		            int col = table1.columnAtPoint(e.getPoint());
 		            table1.getSelectionModel().setSelectionInterval(row, row);
 		            System.out.println(row);
 		            rowSelected = row;
-		        }
+		            //Hyperlink code
+		            //only trys to open when double clicked
+		              if (e.getClickCount() == 2) {//checks for double clicks in facebook column
+		            	 if(col == 9){
+		            	//String to hold URL
+		            	 URL = (String)table1.getModel().getValueAt(table1.getSelectedRow(), table1.getSelectedColumn());
+		                System.out.println("double clicked");
+		                System.out.println(URL);
+		              }
+		              //Sets Jframe for hyperlink window  		              
+		              JFrame jFrame = new JFrame();
+		      		  Container cPane = jFrame.getContentPane();
+		      		  final JEditorPane editorPane = new JEditorPane();
+		      		  //Try catch for bad URL
+		      		  try {
+		      		editorPane.setPage(URL);
+		      		  } catch (IOException ex) {
+		      		brokenURL = 1;
+		      		System.err.println("Invalid URL: " + ex);
+					URLprompt up = new URLprompt();
+					up.setLocation(300, 200);
+		      		  }		      		 	      		 
+		      		 HyperlinkListener listener = new HyperlinkListener() {
+		      			 @Override
+		      			 public void hyperlinkUpdate(HyperlinkEvent event) {
+		      			     if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+		      			   try {
+		      			 editorPane.setPage(event.getURL());
+		      			   } catch (IOException ioe) {
+		      				   System.err.println("Error loading url from link: " + ioe);
+		      			   }
+		      			     }
+		      			 }
+		      		 };	 		      		 
+		      		 //Frame for hyperlink popup window
+		      		 if(brokenURL == 0){
+		      		  editorPane.addHyperlinkListener(listener);
+		      		  editorPane.setEditable(false);
+		      		  JScrollPane pane = new JScrollPane(editorPane);
+		      		  cPane.add(pane, BorderLayout.CENTER);
+		      		  jFrame.setSize(1400, 600);
+		      		  jFrame.setVisible(true);
+		      		 }
+		      		 else{
+		      			 System.out.println("Resest URL");
+		      			 brokenURL = 0;
+		      		 }
+		      		 
+		              }
+		        }// end of hyperlink
 		    });
+		 
+		  
 		 // Click header to sort
 		 table1.getTableHeader().addMouseListener(new MouseAdapter(){
 			 public void mouseClicked(MouseEvent e){
@@ -191,8 +249,7 @@ public class Frame1 extends JFrame{
 			 }
 			 
 		 });
-		 
-		 
+		  
 		
 		AddContactToTable(); // This is the display refresh
 		
