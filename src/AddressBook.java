@@ -56,6 +56,14 @@ public class AddressBook {
         }
         else{
             System.out.println("File Exists");
+            
+            File folder = new File(bookLocation);
+            File[] listOfFiles = folder.listFiles();
+
+            for(int i = 0; i < listOfFiles.length; i++){
+                AddressBookNames.add(listOfFiles[i].getName());
+                System.out.println(listOfFiles[i].getName());
+            }
         }
     }
 
