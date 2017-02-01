@@ -193,47 +193,50 @@ public class Frame1 extends JFrame {
 								table1.getSelectedColumn());
 						System.out.println("double clicked");
 						System.out.println(URL);
-					}
-					// Sets Jframe for hyperlink window
-					JFrame jFrame = new JFrame();
-					Container cPane = jFrame.getContentPane();
-					final JEditorPane editorPane = new JEditorPane();
-					// Try catch for bad URL
-					try {
-						editorPane.setPage(URL);
+
+						// Sets Jframe for hyperlink window
+						JFrame jFrame = new JFrame();
+						Container cPane = jFrame.getContentPane();
+						final JEditorPane editorPane = new JEditorPane();
+						// Try catch for bad URL
 						try {
-							URI uri = new URI(URL);// Open with default browser
-							Open.openURI(uri);
-						} catch (URISyntaxException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							editorPane.setPage(URL);
+							try {
+								URI uri = new URI(URL);// Open with default
+														// browser
+								Open.openURI(uri);
+							} catch (URISyntaxException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						} catch (IOException ex) {
+							brokenURL = 1;
+							System.err.println("Invalid URL: " + ex);
+							URLprompt up = new URLprompt();
+							up.setLocation(300, 200);
 						}
-					} catch (IOException ex) {
-						brokenURL = 1;
-						System.err.println("Invalid URL: " + ex);
-						URLprompt up = new URLprompt();
-						up.setLocation(300, 200);
-					}
-					HyperlinkListener listener = new HyperlinkListener() {
-						@Override
-						public void hyperlinkUpdate(HyperlinkEvent event) {
-							if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-								try {
-									editorPane.setPage(event.getURL());
-								} catch (IOException ioe) {
-									System.err.println("Error loading url from link: " + ioe);
+						HyperlinkListener listener = new HyperlinkListener() {
+							@Override
+							public void hyperlinkUpdate(HyperlinkEvent event) {
+								if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+									try {
+										editorPane.setPage(event.getURL());
+									} catch (IOException ioe) {
+										System.err.println("Error loading url from link: " + ioe);
+									}
 								}
 							}
-						}
-					};
-					// Resets URL if not successful
-					if (brokenURL == 0) {
-						System.out.println("Success");
-					} else {
-						System.out.println("Reset URL");
-						brokenURL = 0;
-					}
 
+						};
+						// Resets URL if not successful
+						if (brokenURL == 0) {
+							System.out.println("Success");
+						} else {
+							System.out.println("Reset URL");
+							brokenURL = 0;
+						}
+
+					}
 				}
 			}// end of hyperlink
 		});
