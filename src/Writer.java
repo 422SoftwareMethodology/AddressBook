@@ -79,7 +79,10 @@ public class Writer {
 	public static void exportWriter(ArrayList<Contact> contactArrayList, String path) throws FileNotFoundException {
 		try (PrintWriter pw = new PrintWriter(new File(path + ".tsv"))) {
 			StringBuilder sb = new StringBuilder();
-
+			String header = new String("CITY" + '\t' + "STATE" + '\t' + "ZIP" + '\t' + "Delivery" +
+			                           '\t' + "Second" + '\t' + "LastName" + '\t' + "FirstName" +
+					                   '\t' + "Phone" + '\n');
+			pw.write(header);
 			int arrayListSize = contactArrayList.size();
 
 			for (int i = 0; i < arrayListSize; i++) {
