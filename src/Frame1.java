@@ -319,8 +319,8 @@ public class Frame1 extends JFrame {
 				// System.out.println(tableModel.getValueAt(i,j));
 				contactInfo[j] = (String) tableModel.getValueAt(i, j);
 			}
-			Contact tempContact = new Contact(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3],
-					contactInfo[4], contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[8], contactInfo[9]);
+			Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[3],
+					contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], contactInfo[8], contactInfo[9]);
 			tempContactList.add(tempContact);
 		}
 		// Display.display(tempContactList);
@@ -347,9 +347,8 @@ public class Frame1 extends JFrame {
 
 	public static void saveAs(String path) {
 		openContactList = AddTableToContact();
-		String fileLocation = trimTSV(path);
 		try {
-			Writer.saveAsWriter(openContactList, fileLocation);
+			Writer.saveAsWriter(openContactList, path);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
