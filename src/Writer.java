@@ -6,12 +6,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Writer {
+	static String header = new String("CITY" + '\t' + "STATE" + '\t' + "ZIP" + '\t' + "Delivery" +
+            '\t' + "Second" + '\t' + "LastName" + '\t' + "FirstName" +
+            '\t' + "Phone" + '\n');
 	public static void writer(ArrayList<Contact> contactArrayList, String fileLoc) throws FileNotFoundException {
 		try (PrintWriter pw = new PrintWriter(new File(fileLoc + ".tsv").getAbsolutePath())) {
 			StringBuilder sb = new StringBuilder();
-
+			pw.write(header);
 			int arrayListSize = contactArrayList.size();
-
 			for (int i = 0; i < arrayListSize; i++) {
 				Contact focusContact = contactArrayList.get(i);
 				sb.append(focusContact.get_city());
@@ -44,9 +46,8 @@ public class Writer {
 	public static void saveAsWriter(ArrayList<Contact> contactArrayList, String path) throws FileNotFoundException {
 		try (PrintWriter pw = new PrintWriter(new File(path + ".tsv"))) {
 			StringBuilder sb = new StringBuilder();
-
+			pw.write(header);
 			int arrayListSize = contactArrayList.size();
-
 			for (int i = 0; i < arrayListSize; i++) {
 				Contact focusContact = contactArrayList.get(i);
 				sb.append(focusContact.get_city());
@@ -79,9 +80,6 @@ public class Writer {
 	public static void exportWriter(ArrayList<Contact> contactArrayList, String path) throws FileNotFoundException {
 		try (PrintWriter pw = new PrintWriter(new File(path + ".tsv"))) {
 			StringBuilder sb = new StringBuilder();
-			String header = new String("CITY" + '\t' + "STATE" + '\t' + "ZIP" + '\t' + "Delivery" +
-			                           '\t' + "Second" + '\t' + "LastName" + '\t' + "FirstName" +
-					                   '\t' + "Phone" + '\n');
 			pw.write(header);
 			int arrayListSize = contactArrayList.size();
 
