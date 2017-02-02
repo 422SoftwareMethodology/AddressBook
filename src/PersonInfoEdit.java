@@ -193,7 +193,7 @@ public class PersonInfoEdit extends JFrame {
 				String editZip) {
 			panel = new JPanel(new GridLayout(1, 1));
 			buttonpanel = new JPanel(new GridLayout(1, 2));
-			Warning = new JLabel("                      Please enter the zip, or you still want to save ");
+			Warning = new JLabel("                      ");
 			SaveButton = new JButton("Save");
 			SaveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {

@@ -44,7 +44,7 @@ public class Frame1 extends JFrame {
 	public static ArrayList<Contact> openContactList = new ArrayList<Contact>();
 
 	public Frame1(String fileLoc) { // This is the main interface of addressbook
-		super("Addressbook!");
+		super(Menu.getFileName(fileLoc));
 		setLayout(new BorderLayout());
 
 		buttonPanel1 = new JPanel(new GridLayout(1, 5)); // panel for buttons
