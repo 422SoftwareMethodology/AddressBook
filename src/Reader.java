@@ -43,7 +43,7 @@ public class Reader {
 							// city, state, zip, add, add2, last, first, phone, email, web
 							
 							Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7],
-								contactInfo[3], contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], " ",
+								contactInfo[3], contactInfo[4], contactInfo[0], contactInfo[1], contactInfo[2], " ",
 								" ");
 							tempContactList.add(tempContact);
 							
@@ -55,7 +55,7 @@ public class Reader {
 								infoArr[5], infoArr[6], infoArr[7], infoArr[8], infoArr[9]);*/
 							
 							Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7],
-									contactInfo[3], contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], contactInfo[8],
+									contactInfo[3], contactInfo[4], contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[8],
 									contactInfo[9]);
 						tempContactList.add(tempContact);
 						//System.out.println("Contact: firstName = " + tempContact.get_firstName());
