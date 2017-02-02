@@ -19,7 +19,10 @@ public class Reader {
 
             while ((line = br.readLine()) != null) {
                 // contact array of a single person, use comma to delimit
-                String[] infoArr = line.split(tsvSplitBy);
+            	if(line.equals("\n")){
+            		continue;
+            	}
+            	else{String[] infoArr = line.split(tsvSplitBy);
                 String[] contactInfo = {"", "", "", "", "", "", "", "", "", ""};
                 System.out.println(Integer.toString(infoArr.length));
                 for(int i = 0; i < infoArr.length; i++){
@@ -43,7 +46,7 @@ public class Reader {
                         + " , email=" + contact[5] ); //For Debugging*/
                 
             }
-
+            }
         } catch (IOException e) {
             //e.printStackTrace();
         }
