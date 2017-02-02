@@ -38,12 +38,16 @@ public class Reader {
 							//public Contact(String city, String state, String zip, String address, String address2, String lastName,
 							//String firstName, String phoneNumber, String email, String website)
 							
-							Contact tempContact = new Contact(contactInfo[0], contactInfo[1], contactInfo[2],
-								contactInfo[3], contactInfo[4], contactInfo[5], contactInfo[6], contactInfo[7], " ",
+							//   0      1      2    3    4     5      6     7    8      9
+							// first, last, phone, add, add2, city, state, zip, email, web normal
+							// city, state, zip, add, add2, last, first, phone, email, web
+							System.out.println("Hey, Maybe here?????? #1");
+							Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7],
+								contactInfo[3], contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], " ",
 								" ");
 							tempContactList.add(tempContact);
 							
-							System.out.println("Contact: Add2 = " + tempContact.get_address2() + " Arr Add2 = " + contactInfo[4] );
+							//System.out.println("Contact: Add2 = " + tempContact.get_address2() + " Arr Add2 = " + contactInfo[4] );
 						
 						} else {
 						Contact tempContact = new Contact(infoArr[0], infoArr[1], infoArr[2], infoArr[3], infoArr[4],

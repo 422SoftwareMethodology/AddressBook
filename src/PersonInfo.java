@@ -21,7 +21,7 @@ public class PersonInfo extends JFrame {
 	private Contact tempContact;
 
 	public PersonInfo(ArrayList<Contact> openContactList) {
-		super("Contact Info");
+		super("Contact Info!");
 		tempContact = new Contact(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ");
 		setLayout(new BorderLayout());
 
@@ -139,8 +139,8 @@ public class PersonInfo extends JFrame {
 							// window and do not save data
 			}
 		});
-
-		InfoPanel.add(FirstName); // add all things to the panel
+		// add all things to the panel
+		InfoPanel.add(FirstName); 
 		InfoPanel.add(fname);
 		InfoPanel.add(LastName);
 		InfoPanel.add(lname);
