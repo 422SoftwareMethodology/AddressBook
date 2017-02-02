@@ -10,22 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 //person info interface
 @SuppressWarnings("serial")
-public class PersonInfo extends JFrame{
+public class PersonInfo extends JFrame {
 	private JPanel InfoPanel;
 	private JLabel FirstName, LastName, phonenumber, ZIP_code, city, state, address1, address2, email, website;
 	private JTextField fname, lname, phonenum, zip, c, s, a1, a2, em, f;
 	private JButton Done, Cancel;
 	private Contact tempContact;
-	public PersonInfo(ArrayList<Contact> openContactList){
+
+	public PersonInfo(ArrayList<Contact> openContactList) {
 		super("Contact Info!");
 		tempContact = new Contact(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ");
 		setLayout(new BorderLayout());
-		
-		InfoPanel = new JPanel(new GridLayout(11, 2));      //one panel in this interface
-		
-		FirstName = new JLabel("            First Name");     //all attributes labels
+
+		InfoPanel = new JPanel(new GridLayout(11, 2)); // one panel in this
+														// interface
+
+		FirstName = new JLabel("            First Name"); // all attributes
+															// labels
 		LastName = new JLabel("            Last Name");
 		phonenumber = new JLabel("            Phone Number");
 		address1 = new JLabel("            Address");
@@ -35,8 +39,8 @@ public class PersonInfo extends JFrame{
 		ZIP_code = new JLabel("            ZIP");
 		email = new JLabel("            Email");
 		website = new JLabel("             Website");
-		
-		fname = new JTextField();  //all text areas
+
+		fname = new JTextField(); // all text areas
 		lname = new JTextField();
 		phonenum = new JTextField();
 		zip = new JTextField();
@@ -46,40 +50,40 @@ public class PersonInfo extends JFrame{
 		a2 = new JTextField();
 		em = new JTextField();
 		f = new JTextField();
-		
-		Done = new JButton("Done!");    //click this button to save the info
-		Done.addActionListener(new ActionListener(){  
+
+		Done = new JButton("Done!"); // click this button to save the info
+		Done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int checknum = 0;
-				if(phonenum.getText().isEmpty())
+				if (phonenum.getText().isEmpty())
 					checknum += 1;
-				if(a1.getText().isEmpty())
+				if (a1.getText().isEmpty())
 					checknum += 1;
-				if(a2.getText().isEmpty())
+				if (a2.getText().isEmpty())
 					checknum += 1;
-				if(c.getText().isEmpty())
+				if (c.getText().isEmpty())
 					checknum += 1;
-				if(s.getText().isEmpty())
+				if (s.getText().isEmpty())
 					checknum += 1;
-				if(zip.getText().isEmpty())
+				if (zip.getText().isEmpty())
 					checknum += 1;
-				if(em.getText().isEmpty())
+				if (em.getText().isEmpty())
 					checknum += 1;
-				if(f.getText().isEmpty())
+				if (f.getText().isEmpty())
 					checknum += 1;
-				
-				if(fname.getText().isEmpty() && lname.getText().isEmpty()){
+
+				if (fname.getText().isEmpty() && lname.getText().isEmpty()) {
 					prompt1 p1 = new prompt1();
 					p1.setLocation(300, 200);
 				}
-				
-				else if(checknum == 8){
-						prompt1 p1 = new prompt1();
-						p1.setLocation(300, 200);
-					}
-				
-				else{
-					if(zip.getText().isEmpty()){
+
+				else if (checknum == 8) {
+					prompt1 p1 = new prompt1();
+					p1.setLocation(300, 200);
+				}
+
+				else {
+					if (zip.getText().isEmpty()) {
 						tempContact.set_firstName(fname.getText());
 						tempContact.set_lastName(lname.getText());
 						tempContact.set_phoneNumber(phonenum.getText());
@@ -92,21 +96,23 @@ public class PersonInfo extends JFrame{
 						tempContact.set_website(f.getText());
 						openContactList.add(tempContact);
 						Frame1.AddContactToTable();
-						dispose();                                //after customer click the button, close the current window and save data
+						dispose(); // after customer click the button, close the
+									// current window and save data
 					}
-					
-					else if((zip.getText().isEmpty() == false)&&(checkzip(zip.getText()) == false)){
+
+					else if ((zip.getText().isEmpty() == false) && (checkzip(zip.getText()) == false)) {
 						promptzip p2 = new promptzip(openContactList);
 						p2.setLocation(500, 200);
 					}
-					
-					/*else if((email.getText().isEmpty() == false)&&(checkemail(email.getText()) == false)){
-							prompt4 p4 = new prompt4();
-							p4.setLocation(450, 300);
-							tempContact.set_email(em.getText());
-							tempContact.set_website(f.getText());
-					}*/
-					else{
+
+					/*
+					 * else if((email.getText().isEmpty() ==
+					 * false)&&(checkemail(email.getText()) == false)){ prompt4
+					 * p4 = new prompt4(); p4.setLocation(450, 300);
+					 * tempContact.set_email(em.getText());
+					 * tempContact.set_website(f.getText()); }
+					 */
+					else {
 						tempContact.set_firstName(fname.getText());
 						tempContact.set_lastName(lname.getText());
 						tempContact.set_phoneNumber(phonenum.getText());
@@ -120,19 +126,21 @@ public class PersonInfo extends JFrame{
 						openContactList.add(tempContact);
 						Frame1.getNewContact(openContactList);
 						Frame1.AddContactToTable();
-						dispose();                                //after customer click the button, close the current window and save data
+						dispose(); // after customer click the button, close the
+									// current window and save data
 					}
 				}
-        }   
-    });  
+			}
+		});
 		Cancel = new JButton("Cancel");
-		Cancel.addActionListener(new ActionListener(){  
-			public void actionPerformed(ActionEvent e) {  
-				dispose();                                //after customer click the button, close the current window and do not save data
-        }   
-    });  
-		
-		InfoPanel.add(FirstName);   //add allthings to the panel
+		Cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose(); // after customer click the button, close the current
+							// window and do not save data
+			}
+		});
+
+		InfoPanel.add(FirstName); // add allthings to the panel
 		InfoPanel.add(fname);
 		InfoPanel.add(LastName);
 		InfoPanel.add(lname);
@@ -154,22 +162,22 @@ public class PersonInfo extends JFrame{
 		InfoPanel.add(f);
 		InfoPanel.add(Done);
 		InfoPanel.add(Cancel);
-		
-		InfoPanel.setBackground(Color.green); //set background color of panel
-		
-		add(InfoPanel, BorderLayout.CENTER);  //set panel location
-		setSize(600,600);         //set frame size
+
+		InfoPanel.setBackground(Color.green); // set background color of panel
+
+		add(InfoPanel, BorderLayout.CENTER); // set panel location
+		setSize(600, 600); // set frame size
 		setVisible(true);
-		
+
 	}
-	public boolean checkzip(String s){
-		if(s.length() == 5 || s.length() == 10){
-			if(s.length() == 5){
+
+	public boolean checkzip(String s) {
+		if (s.length() == 5 || s.length() == 10) {
+			if (s.length() == 5) {
 				String digit5 = "\\d{5}";
 				boolean b1 = s.matches(digit5);
 				return b1;
-			}
-			else if(s.length() == 10){
+			} else if (s.length() == 10) {
 				String digit10 = "\\d{5}" + "-" + "\\d{4}";
 				boolean b2 = s.matches(digit10);
 				return b2;
@@ -177,18 +185,19 @@ public class PersonInfo extends JFrame{
 		}
 		return false;
 	}
-	
-	class promptzip extends JFrame{
+
+	class promptzip extends JFrame {
 		private JButton SaveButton, NoButton;
 		private JLabel Warning;
 		private JPanel panel, buttonpanel;
-		public promptzip(ArrayList<Contact> openContactList){
+
+		public promptzip(ArrayList<Contact> openContactList) {
 			panel = new JPanel(new GridLayout(1, 1));
 			buttonpanel = new JPanel(new GridLayout(1, 2));
 			Warning = new JLabel("                             Please enter the zip, or you still want to save ");
 			SaveButton = new JButton("Save");
-			SaveButton.addActionListener(new ActionListener(){  
-				public void actionPerformed(ActionEvent e) { 
+			SaveButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 					tempContact.set_firstName(fname.getText());
 					tempContact.set_lastName(lname.getText());
 					tempContact.set_phoneNumber(phonenum.getText());
@@ -203,20 +212,20 @@ public class PersonInfo extends JFrame{
 					Frame1.AddContactToTable();
 					dispose();
 					Cancel.doClick();
-	        }   
-	    }); 
+				}
+			});
 			NoButton = new JButton("No");
-			NoButton.addActionListener(new ActionListener(){  
-				public void actionPerformed(ActionEvent e) { 
+			NoButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 					dispose();
-	        }   
-	    }); 
+				}
+			});
 			panel.add(Warning);
 			buttonpanel.add(SaveButton);
 			buttonpanel.add(NoButton);
 			add(panel, BorderLayout.NORTH);
 			add(buttonpanel, BorderLayout.CENTER);
-			setSize(450,90);
+			setSize(450, 90);
 			setVisible(true);
 		}
 	}

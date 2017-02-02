@@ -119,7 +119,7 @@ public class Frame1 extends JFrame {
 		savebutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("File Location before Save button trim: " + fileLoc);
-				//String fileLocation = trimTSV(fileLoc);
+				// String fileLocation = trimTSV(fileLoc);
 				save(fileLoc);
 			}
 		});
@@ -162,23 +162,24 @@ public class Frame1 extends JFrame {
 				"Zipcode", "Email", "Website" };
 		tableModel = new DefaultTableModel(columnNames, 0);
 		table1 = new JTable(tableModel) {
-	        private static final long serialVersionUID = 1L;
-	        public boolean isCellEditable(int row, int column) {                
-	                return false;               
-	        };
-	    };
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			};
+		};
 
 		TableColumn column = null;
-		//loop stops at second to last column
+		// loop stops at second to last column
 		int colunms = table1.getColumnCount();
 		for (int i = 0; i < colunms - 1; i++) {
 			column = table1.getColumnModel().getColumn(i);
 			column.setPreferredWidth(100);
 		}
-		//column for website needed to be larger
+		// column for website needed to be larger
 		column = table1.getColumnModel().getColumn(9);
 		column.setPreferredWidth(350);
-		
+
 		table1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scroll = new JScrollPane(table1);
 
@@ -355,14 +356,14 @@ public class Frame1 extends JFrame {
 		}
 
 	}
-	
-	public static void getNewContact(ArrayList<Contact> contactList){
+
+	public static void getNewContact(ArrayList<Contact> contactList) {
 		openContactList = contactList;
 	}
-	
-	public static String trimTSV(String fileName){
+
+	public static String trimTSV(String fileName) {
 		int length = fileName.length();
-		String returnName = fileName.substring(0, length-4);
+		String returnName = fileName.substring(0, length - 4);
 		System.out.println(returnName);
 		return returnName;
 	}
