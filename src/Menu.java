@@ -74,7 +74,7 @@ public class Menu extends JFrame{
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
 				String fileName = (String) table.getValueAt(rowSelected, 0);
-				fileName = addTSV(fileName);
+				//fileName = addTSV(fileName);
 				String fileLoc = bookFolderLoc + fileName;
 				System.out.println(fileLoc);
 				Frame1 f1 = new Frame1(fileLoc);
@@ -108,7 +108,7 @@ public class Menu extends JFrame{
 		        importContacts = Reader.reader(chooser.getSelectedFile().getAbsolutePath());
 		        String FileName = getFileName(chooser.getSelectedFile().getAbsolutePath());
 		        String trimmed = trimTSV(FileName);
-		        String newFileLocation = bookFolderLoc + FileName;
+		        String newFileLocation = bookFolderLoc + trimmed;
 		        try {
 					Writer.writer(importContacts, bookFolderLoc + trimmed);
 				} catch (FileNotFoundException e1) {

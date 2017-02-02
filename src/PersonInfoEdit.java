@@ -53,7 +53,7 @@ public class PersonInfoEdit extends JFrame {
 		em = new JTextField(editEmail);
 		f = new JTextField(editFacebook);
 
-		Done = new JButton("Done!"); // click this button to save the info
+		Done = new JButton("Done"); // click this button to save the info
 		Done.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int checknum = 0;

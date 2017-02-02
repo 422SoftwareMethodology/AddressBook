@@ -37,8 +37,9 @@ public class Createbookname extends JFrame{
 				fileLocation = booksLocation + bookname.getText().toString();
 				Frame1 f1 = new Frame1(fileLocation);
 				f1.setLocation(200, 50);
-				f1.save(fileLocation);
-				Menu.addAddressBook(fileLocation + ".tsv");
+				//f1.save(fileLocation);
+				String locationWithTSV = fileLocation + ".tsv";
+				Menu.addAddressBook(locationWithTSV);
         }   
     });  
 		

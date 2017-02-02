@@ -9,7 +9,7 @@ public class Reader {
 
     public static ArrayList<Contact> reader(String fileLocation) {
 
-        String tsvFile = fileLocation;
+        String tsvFile = fileLocation + ".tsv";
         String line = "";
         String tsvSplitBy = "\t";
         

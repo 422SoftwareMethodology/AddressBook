@@ -118,6 +118,8 @@ public class Frame1 extends JFrame {
 		savebutton.setBackground(Color.green);
 		savebutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("File Location before Save button trim: " + fileLoc);
+				//String fileLocation = trimTSV(fileLoc);
 				save(fileLoc);
 			}
 		});
