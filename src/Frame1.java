@@ -297,8 +297,10 @@ public class Frame1 extends JFrame {
 			zip = openContactList.get(i).get_zip();
 			email = openContactList.get(i).get_email();
 			website = openContactList.get(i).get_website();
+			
+			System.out.println("address2 = " + openContactList.get(i).get_address2());
 
-			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip, email, website };
+			Object[] data = { city, state, zip, address, address2, lastName, firstName, phoneNumber, email, website };
 			Frame1.tableModel.addRow(data);
 		}
 	}
@@ -319,8 +321,8 @@ public class Frame1 extends JFrame {
 				// System.out.println(tableModel.getValueAt(i,j));
 				contactInfo[j] = (String) tableModel.getValueAt(i, j);
 			}
-			Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[3],
-					contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], contactInfo[8], contactInfo[9]);
+			Contact tempContact = new Contact(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3],
+					contactInfo[4], contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[8], contactInfo[9]);
 			tempContactList.add(tempContact);
 		}
 		// Display.display(tempContactList);
@@ -347,8 +349,9 @@ public class Frame1 extends JFrame {
 
 	public static void saveAs(String path) {
 		openContactList = AddTableToContact();
+		String fileLocation = trimTSV(path);
 		try {
-			Writer.saveAsWriter(openContactList, path);
+			Writer.saveAsWriter(openContactList, fileLocation);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
