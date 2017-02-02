@@ -322,8 +322,8 @@ public class Frame1 extends JFrame {
 				// System.out.println(tableModel.getValueAt(i,j));
 				contactInfo[j] = (String) tableModel.getValueAt(i, j);
 			}
-			Contact tempContact = new Contact(contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[3],
-					contactInfo[4], contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[8], contactInfo[9]);
+			Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7], contactInfo[3],
+					contactInfo[4], contactInfo[0], contactInfo[1], contactInfo[2], contactInfo[8], contactInfo[9]);
 			tempContactList.add(tempContact);
 		}
 		// Display.display(tempContactList);
@@ -335,6 +335,7 @@ public class Frame1 extends JFrame {
 			Frame1.tableModel.removeRow(rowToDelete);
 			Frame1.openContactList = Frame1.AddTableToContact();
 		}
+		
 	}
 
 	public static void save(String fileLoc) {
