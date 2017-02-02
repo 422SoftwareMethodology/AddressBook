@@ -85,7 +85,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		deletebutton = new JButton("delete");
+		deletebutton = new JButton("Delete");
 		deletebutton.setBackground(Color.green);
 		deletebutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +100,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		importbutton = new JButton("import");
+		importbutton = new JButton("Import");
 		importbutton.setBackground(Color.green);
 		importbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,7 +127,7 @@ public class Menu extends JFrame {
 			}
 		});
 
-		exportbutton = new JButton("export");
+		exportbutton = new JButton("Export");
 		exportbutton.setBackground(Color.green);
 		exportbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
