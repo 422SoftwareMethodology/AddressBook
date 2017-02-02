@@ -34,6 +34,7 @@ public class Menu extends JFrame{
 	private String exportFolderLoc = System.getProperty("user.dir");
 	private ArrayList<Contact> importContacts;
 	private ArrayList<Contact> exportContacts;
+	private static ArrayList<String> addressBookNames;
 	private static DefaultTableModel tableModel;
 	
 	public Menu(ArrayList<String> addressNames)
@@ -41,9 +42,8 @@ public class Menu extends JFrame{
 		super("Welcome!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setLayout(new BorderLayout());
-		
+		addressBookNames = addressNames;
 		JFileChooser chooser = new JFileChooser();
-		
 		
 		//Container c= getContentPane();
 		//c.setLayout(new BorderLayout());
@@ -55,8 +55,15 @@ public class Menu extends JFrame{
 		newbutton.setBackground(Color.green);
 		newbutton.addActionListener(new ActionListener(){  
 	            public void actionPerformed(ActionEvent e) {   //jump to the create addressbook name window.
-	            	Createbookname c1 = new Createbookname();
+	            	Createbookname c1 = new Createbookname(bookFolderLoc);
 	                c1.setLocation(100, 50);
+	                /*
+	                Frame1 f1 = new Frame1(c1.fileLocation);
+					f1.setLocation(200, 50);
+					f1.save(c1.fileLocation);
+	                addressBookNames.add(c1.getFileLocation());
+	                refreshTable(addressBookNames);
+	                */
 	            }   
 	        });  
 		
@@ -67,6 +74,7 @@ public class Menu extends JFrame{
 		openbutton.addActionListener(new ActionListener(){  
 			public void actionPerformed(ActionEvent e) {    //jump to the addressbook interface.
 				String fileName = (String) table.getValueAt(rowSelected, 0);
+				fileName = addTSV(fileName);
 				String fileLoc = bookFolderLoc + fileName;
 				System.out.println(fileLoc);
 				Frame1 f1 = new Frame1(fileLoc);
@@ -79,12 +87,13 @@ public class Menu extends JFrame{
 		deletebutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				String fileName = (String) table.getValueAt(rowSelected, 0);
+				fileName = addTSV(fileName);
 				String trimmed = trimTSV(fileName);
 				String fileLocation = bookFolderLoc + fileName;
 				File f = new File(fileLocation);
 				f.delete();
-				addressNames.remove(fileName);
-				refreshTable(addressNames);
+				addressBookNames.remove(fileName);
+				refreshTable(addressBookNames);
 			}
 		});
 		
@@ -106,8 +115,8 @@ public class Menu extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-		        addressNames.add(FileName);
-		        refreshTable(addressNames);
+		        addressBookNames.add(FileName);
+		        refreshTable(addressBookNames);
 		        Frame1 f2 = new Frame1(newFileLocation);
 		        f2.setLocation(150, 50);
 		        
@@ -166,7 +175,7 @@ public class Menu extends JFrame{
 
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  
 		sc = new JScrollPane(table);
-		refreshTable(addressNames);
+		refreshTable(addressBookNames);
 		
 		//bookmenu = new JMenuBar();
 		
@@ -196,8 +205,15 @@ public class Menu extends JFrame{
 				rowSelected = row;
 			}
 		});
+		
 	}
 	
+	public static void addAddressBook(String fileLoc){
+		String bookName = getFileName(fileLoc);
+		System.out.println("This is the file name: " +fileLoc);
+		addressBookNames.add(bookName);
+		refreshTable(addressBookNames);
+	}
 	public void setBookLoc(String bookLoc){
 		bookFolderLoc = bookLoc;
 	}
@@ -206,7 +222,7 @@ public class Menu extends JFrame{
 		exportFolderLoc = exportLoc;
 	}
 	
-	public String getFileName(String fileLocation){
+	public static String getFileName(String fileLocation){
 		int length = fileLocation.length();
 		String fileName = "";
 		String tempString = "";
@@ -222,14 +238,18 @@ public class Menu extends JFrame{
 		return fileName;
 	}
 	
-	public String trimTSV(String fileName){
+	public static String trimTSV(String fileName){
 		int length = fileName.length();
 		String returnName = fileName.substring(0, length-4);
 		System.out.println(returnName);
 		return returnName;
 	}
 	
-	public void refreshTable(ArrayList<String> bookNames){
+	public static String addTSV(String fileName){
+		return fileName + ".tsv";
+	}
+	
+	public static void refreshTable(ArrayList<String> bookNames){
 		if (tableModel.getRowCount() > 0) {
 			for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
 				tableModel.removeRow(i);
@@ -238,6 +258,7 @@ public class Menu extends JFrame{
 		String bookName = "";
 		for(int i = 0; i < bookNames.size(); i++){
 			bookName = bookNames.get(i);
+			bookName = trimTSV(bookName);
 			Object[] data = { bookName };
 			Menu.tableModel.addRow(data);
 			
@@ -245,5 +266,6 @@ public class Menu extends JFrame{
 		
 	}
 	
+
 }
 	

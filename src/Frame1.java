@@ -347,5 +347,9 @@ public class Frame1 extends JFrame {
 		}
 
 	}
+	
+	public static void getNewContact(ArrayList<Contact> contactList){
+		openContactList = contactList;
+	}
 
 }

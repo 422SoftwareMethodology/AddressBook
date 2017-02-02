@@ -118,6 +118,7 @@ public class PersonInfo extends JFrame{
 						tempContact.set_email(em.getText());
 						tempContact.set_facebook(f.getText());
 						openContactList.add(tempContact);
+						Frame1.getNewContact(openContactList);
 						Frame1.AddContactToTable();
 						dispose();                                //after customer click the button, close the current window and save data
 					}
