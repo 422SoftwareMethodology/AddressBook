@@ -31,7 +31,7 @@ public class Writer {
                  sb.append('\t');
                  sb.append(focusContact.get_email()); // email 8
                  sb.append('\t');
-                 sb.append(focusContact.get_facebook()); // facebook 9
+                 sb.append(focusContact.get_website()); // website 9
                  sb.append('\n'); // end of contact
              }
              
@@ -67,7 +67,7 @@ public class Writer {
                  sb.append('\t');
                  sb.append(focusContact.get_email()); // email 8
                  sb.append('\t');
-                 sb.append(focusContact.get_facebook()); // facebook 9
+                 sb.append(focusContact.get_website()); // website 9
                  sb.append('\n'); // end of contact
              }
              

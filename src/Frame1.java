@@ -85,10 +85,10 @@ public class Frame1 extends JFrame {
 				String tempState = (String) table1.getValueAt(rowSelected, 6);
 				String tempZip = (String) table1.getValueAt(rowSelected, 7);
 				String tempEmail = (String) table1.getValueAt(rowSelected, 8);
-				String tempFacebook = (String) table1.getValueAt(rowSelected, 9);
+				String tempWebsite = (String) table1.getValueAt(rowSelected, 9);
 				PersonInfoEdit p1 = new PersonInfoEdit(openContactList, rowSelected, tempFirstName, tempLastName,
 						tempPhoneNumber, tempAddress1, tempAddress2, tempCity, tempState, tempZip, tempEmail,
-						tempFacebook);
+						tempWebsite);
 				p1.setLocation(150, 100);
 			}
 		});
@@ -158,8 +158,8 @@ public class Frame1 extends JFrame {
 		TextPanel.add(ta);
 		TextPanel.add(searchbutton);
 
-		String[] columnNames = { "Firstname", "Lastname", "Phonenumber", "Address", "Address2", "City", "State",
-				"Zipcode", "Email", "Facebook" };
+		String[] columnNames = { "First Name", "Last Name", "Phone Number", "Address", "Address 2", "City", "State",
+				"Zipcode", "Email", "Website" };
 		tableModel = new DefaultTableModel(columnNames, 0);
 		table1 = new JTable(tableModel) {
 	        private static final long serialVersionUID = 1L;
@@ -169,11 +169,16 @@ public class Frame1 extends JFrame {
 	    };
 
 		TableColumn column = null;
+		//loop stops at second to last column
 		int colunms = table1.getColumnCount();
-		for (int i = 0; i < colunms; i++) {
+		for (int i = 0; i < colunms - 1; i++) {
 			column = table1.getColumnModel().getColumn(i);
 			column.setPreferredWidth(100);
 		}
+		//column for website needed to be larger
+		column = table1.getColumnModel().getColumn(9);
+		column.setPreferredWidth(350);
+		
 		table1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scroll = new JScrollPane(table1);
 
@@ -192,7 +197,7 @@ public class Frame1 extends JFrame {
 				// Hyperlink code
 				// only trys to open when double clicked
 				if (e.getClickCount() == 2) {// checks for double clicks in
-												// website column // facebook
+												// website column // website
 												// column
 					if (col == 9) {
 						// String to hold URL
@@ -268,7 +273,7 @@ public class Frame1 extends JFrame {
 
 		AddContactToTable(); // This is the display refresh
 
-		setSize(1000, 500); // set frame size
+		setSize(1200, 500); // set frame size
 		setVisible(true);
 	}
 
@@ -279,7 +284,7 @@ public class Frame1 extends JFrame {
 			}
 		}
 		String firstName = " ", lastName = " ", phoneNumber = " ", address = " ", address2 = " ", city = " ",
-				state = " ", zip = " ", email = " ", facebook = " ";
+				state = " ", zip = " ", email = " ", website = " ";
 		for (int i = 0; i < openContactList.size(); ++i) {
 			firstName = openContactList.get(i).get_firstName();
 			lastName = openContactList.get(i).get_lastName();
@@ -290,9 +295,9 @@ public class Frame1 extends JFrame {
 			state = openContactList.get(i).get_state();
 			zip = openContactList.get(i).get_zip();
 			email = openContactList.get(i).get_email();
-			facebook = openContactList.get(i).get_facebook();
+			website = openContactList.get(i).get_website();
 
-			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip, email, facebook };
+			Object[] data = { firstName, lastName, phoneNumber, address, address2, city, state, zip, email, website };
 			Frame1.tableModel.addRow(data);
 		}
 	}

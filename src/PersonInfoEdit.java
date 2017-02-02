@@ -15,14 +15,14 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class PersonInfoEdit extends JFrame {
 	private JPanel InfoPanel;
-	private JLabel FirstName, LastName, phonenumber, ZIP_code, city, state, address1, address2, email, facebook;
+	private JLabel FirstName, LastName, phonenumber, ZIP_code, city, state, address1, address2, email, website;
 	private JTextField fname, lname, phonenum, zip, c, s, a1, a2, em, f;
 	private JButton Done, Cancel;
 	private Contact tempContact;
 
 	public PersonInfoEdit(ArrayList<Contact> openContactList, int rowSelected, String editFirstName,
 			String editLastName, String editPhoneNumber, String editAddress1, String editAddress2, String editCity,
-			String editState, String editZip, String editEmail, String editFacebook) {
+			String editState, String editZip, String editEmail, String editWebsite) {
 		super("Contact Info!");
 		tempContact = new Contact(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ");
 		setLayout(new BorderLayout());
@@ -30,17 +30,17 @@ public class PersonInfoEdit extends JFrame {
 		InfoPanel = new JPanel(new GridLayout(11, 2)); // one panel in this
 														// interface
 
-		FirstName = new JLabel("            FirstName"); // all attributes
+		FirstName = new JLabel("            First Name"); // all attributes
 															// labels
-		LastName = new JLabel("            LastName");
-		phonenumber = new JLabel("            Phonenumber");
-		address1 = new JLabel("            Address1");
-		address2 = new JLabel("            Address2");
+		LastName = new JLabel("            Last Name");
+		phonenumber = new JLabel("            Phone Number");
+		address1 = new JLabel("            Address");
+		address2 = new JLabel("            Address 2");
 		city = new JLabel("            City");
 		state = new JLabel("            State");
 		ZIP_code = new JLabel("            ZIP");
-		email = new JLabel("            Email address");
-		facebook = new JLabel("            Facebook");
+		email = new JLabel("            Email");
+		website = new JLabel("            Website");
 
 		fname = new JTextField(editFirstName); // all text areas
 		lname = new JTextField(editLastName);
@@ -51,7 +51,7 @@ public class PersonInfoEdit extends JFrame {
 		a1 = new JTextField(editAddress1);
 		a2 = new JTextField(editAddress2);
 		em = new JTextField(editEmail);
-		f = new JTextField(editFacebook);
+		f = new JTextField(editWebsite);
 
 		Done = new JButton("Done"); // click this button to save the info
 		Done.addActionListener(new ActionListener() {
@@ -92,7 +92,7 @@ public class PersonInfoEdit extends JFrame {
 						tempContact.set_state(s.getText());
 						tempContact.set_zip(zip.getText());
 						tempContact.set_email(em.getText());
-						tempContact.set_facebook(f.getText());
+						tempContact.set_website(f.getText());
 						openContactList.add(tempContact);
 						Frame1.AddContactToTable();
 						Frame1.deleteSelectedRow(rowSelected);
@@ -117,7 +117,7 @@ public class PersonInfoEdit extends JFrame {
 						tempContact.set_state(s.getText());
 						tempContact.set_zip(zip.getText());
 						tempContact.set_email(em.getText());
-						tempContact.set_facebook(f.getText());
+						tempContact.set_website(f.getText());
 						openContactList.add(tempContact);
 						Frame1.AddContactToTable();
 						Frame1.deleteSelectedRow(rowSelected);
@@ -155,7 +155,7 @@ public class PersonInfoEdit extends JFrame {
 		InfoPanel.add(zip);
 		InfoPanel.add(email);
 		InfoPanel.add(em);
-		InfoPanel.add(facebook);
+		InfoPanel.add(website);
 		InfoPanel.add(f);
 		InfoPanel.add(Done);
 		InfoPanel.add(Cancel);
@@ -206,7 +206,7 @@ public class PersonInfoEdit extends JFrame {
 					tempContact.set_state(s.getText());
 					tempContact.set_zip(zip.getText());
 					tempContact.set_email(em.getText());
-					tempContact.set_facebook(f.getText());
+					tempContact.set_website(f.getText());
 					openContactList.add(tempContact);
 					Frame1.AddContactToTable();
 					Frame1.deleteSelectedRow(rowSelected);

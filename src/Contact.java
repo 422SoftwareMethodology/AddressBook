@@ -10,9 +10,9 @@ public class Contact implements Comparable<Contact> {
 	private String _state;
 	private String _zip;
 	private String _email;
-	private String _facebook;
+	private String _website;
 
-	public Contact(String firstName, String lastName, String phoneNumber, String address, String address2, String city, String state, String zip, String email, String facebook) {
+	public Contact(String firstName, String lastName, String phoneNumber, String address, String address2, String city, String state, String zip, String email, String website) {
 
 		set_firstName(firstName);
 		set_lastName(lastName);
@@ -23,7 +23,7 @@ public class Contact implements Comparable<Contact> {
 		set_state(state);
 		set_zip(zip);
 		set_email(email);
-		set_facebook(facebook);
+		set_website(website);
 
 	}
 
@@ -99,12 +99,12 @@ public class Contact implements Comparable<Contact> {
 		this._email = zip;
 	}
 
-	public String get_facebook() {
-		return _facebook;
+	public String get_website() {
+		return _website;
 	}
 
-	public void set_facebook(String zip) {
-		this._facebook = zip;
+	public void set_website(String zip) {
+		this._website = zip;
 	}
 
 	@Override
