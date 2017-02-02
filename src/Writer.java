@@ -26,9 +26,9 @@ public class Writer {
 				sb.append('\t');
 				sb.append(focusContact.get_address2());
 				sb.append('\t');
-				sb.append(focusContact.get_lastName());
-				sb.append('\t');
 				sb.append(focusContact.get_firstName());
+				sb.append('\t');
+				sb.append(focusContact.get_lastName());
 				sb.append('\t');
 				sb.append(focusContact.get_phoneNumber());
 				sb.append('\t');
@@ -60,9 +60,9 @@ public class Writer {
 				sb.append('\t');
 				sb.append(focusContact.get_address2());
 				sb.append('\t');
-				sb.append(focusContact.get_lastName());
-				sb.append('\t');
 				sb.append(focusContact.get_firstName());
+				sb.append('\t');
+				sb.append(focusContact.get_lastName());
 				sb.append('\t');
 				sb.append(focusContact.get_phoneNumber());
 				sb.append('\t');
