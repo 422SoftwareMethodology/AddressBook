@@ -140,7 +140,7 @@ public class PersonInfo extends JFrame {
 			}
 		});
 
-		InfoPanel.add(FirstName); // add allthings to the panel
+		InfoPanel.add(FirstName); // add all things to the panel
 		InfoPanel.add(fname);
 		InfoPanel.add(LastName);
 		InfoPanel.add(lname);
@@ -194,7 +194,7 @@ public class PersonInfo extends JFrame {
 		public promptzip(ArrayList<Contact> openContactList) {
 			panel = new JPanel(new GridLayout(1, 1));
 			buttonpanel = new JPanel(new GridLayout(1, 2));
-			Warning = new JLabel("                             Please enter the zip, or you still want to save ");
+			Warning = new JLabel("                             Invalid zip code. Would you still like to save? ");
 			SaveButton = new JButton("Save");
 			SaveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
