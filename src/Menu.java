@@ -108,7 +108,10 @@ public class Menu extends JFrame {
 				chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				chooser.showOpenDialog(null);
 				System.out.println(chooser.getSelectedFile());
-				importContacts = Reader.reader(chooser.getSelectedFile().getAbsolutePath());
+				String path = chooser.getSelectedFile().getAbsolutePath();
+				path = trimTSV(path);
+				importContacts = Reader.reader(path);
+				System.out.println("importContacts length: " + Integer.toString(importContacts.size()));
 				String FileName = getFileName(chooser.getSelectedFile().getAbsolutePath());
 				String trimmed = trimTSV(FileName);
 				String newFileLocation = bookFolderLoc + trimmed;
@@ -132,11 +135,11 @@ public class Menu extends JFrame {
 		exportbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String fileName = (String) table.getValueAt(rowSelected, 0);
-				String trimmed = trimTSV(fileName);
+				//String trimmed = trimTSV(fileName);
 				String fileLoc = bookFolderLoc + fileName;
 				exportContacts = Reader.reader(fileLoc);
 				try {
-					Writer.exportWriter(exportContacts, exportFolderLoc + trimmed);
+					Writer.exportWriter(exportContacts, exportFolderLoc + fileName);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
