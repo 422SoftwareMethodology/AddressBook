@@ -24,7 +24,7 @@ import javax.swing.JFileChooser;
 //Menu Interface
 @SuppressWarnings("serial")
 public class Menu extends JFrame {
-	private JButton newbutton, openbutton, quitbutton, deletebutton, importbutton, exportbutton;
+	private JButton newbutton, openbutton, quitbutton, deletebutton, importbutton, exportbutton, editbutton;
 	private JScrollPane sc;
 	private JLabel titlelabel;
 	private JTextArea text;
@@ -47,7 +47,7 @@ public class Menu extends JFrame {
 		// Container c= getContentPane();
 		// c.setLayout(new BorderLayout());
 
-		JPanel buttonPanel = new JPanel(new GridLayout(1, 6)); // panel for
+		JPanel buttonPanel = new JPanel(new GridLayout(1, 7)); // panel for
 																// buttons
 		// JPanel titlepanel = new JPanel(new GridLayout(1, 1)); //panel in the
 		// center, we may change it to a display field that shows all
@@ -97,6 +97,15 @@ public class Menu extends JFrame {
 				f.delete();
 				addressBookNames.remove(fileName);
 				refreshTable(addressBookNames);
+			}
+		});
+		
+		editbutton = new JButton("Edit");
+		editbutton.setBackground(Color.green);
+		editbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				 String currentName = (String) table.getValueAt(rowSelected, 0);
+				 EditAddressName editWindow = new EditAddressName(currentName);
 			}
 		});
 
@@ -164,7 +173,7 @@ public class Menu extends JFrame {
 		}
 
 		// text = new JTextArea();
-		String[] columnNames = { "                                        Addressbook name" };
+		String[] columnNames = { "                            Address Books                                				  " };
 		tableModel = new DefaultTableModel(columnNames, 0);
 		table = new JTable(tableModel);
 		table.setEnabled(false);
@@ -172,7 +181,7 @@ public class Menu extends JFrame {
 		int colunms = table.getColumnCount();
 		for (int i = 0; i < colunms; ++i) {
 			column = table.getColumnModel().getColumn(i);
-			column.setPreferredWidth(500);
+			column.setPreferredWidth(700);
 		}
 
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -188,6 +197,7 @@ public class Menu extends JFrame {
 		buttonPanel.add(newbutton); // add all buttons to the panel
 		buttonPanel.add(openbutton);
 		buttonPanel.add(deletebutton);
+		buttonPanel.add(editbutton);
 		buttonPanel.add(importbutton);
 		buttonPanel.add(exportbutton);
 		buttonPanel.add(quitbutton);
@@ -196,7 +206,7 @@ public class Menu extends JFrame {
 		// add(titlepanel, BorderLayout.CENTER);
 		add(sc, BorderLayout.CENTER);
 		sc.setVisible(true);
-		setSize(500, 500); // set frame size
+		setSize(700, 500); // set frame size
 
 		table.addMouseListener(new MouseAdapter() { // click on cell
 			public void mousePressed(MouseEvent e) {

@@ -353,7 +353,7 @@ public class Frame1 extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+			
 	}
 
 	public static void getNewContact(ArrayList<Contact> contactList) {
