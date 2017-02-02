@@ -159,7 +159,12 @@ public class Frame1 extends JFrame {
 		String[] columnNames = { "Firstname", "Lastname", "Phonenumber", "Address", "Address2", "City", "State",
 				"Zipcode", "Email", "Facebook" };
 		tableModel = new DefaultTableModel(columnNames, 0);
-		table1 = new JTable(tableModel);
+		table1 = new JTable(tableModel) {
+	        private static final long serialVersionUID = 1L;
+	        public boolean isCellEditable(int row, int column) {                
+	                return false;               
+	        };
+	    };
 
 		TableColumn column = null;
 		int colunms = table1.getColumnCount();
