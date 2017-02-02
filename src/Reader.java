@@ -41,7 +41,7 @@ public class Reader {
 							//   0      1      2    3    4     5      6     7    8      9
 							// first, last, phone, add, add2, city, state, zip, email, web normal
 							// city, state, zip, add, add2, last, first, phone, email, web
-							System.out.println("Hey, Maybe here?????? #1");
+							
 							Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7],
 								contactInfo[3], contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], " ",
 								" ");
@@ -50,8 +50,13 @@ public class Reader {
 							//System.out.println("Contact: Add2 = " + tempContact.get_address2() + " Arr Add2 = " + contactInfo[4] );
 						
 						} else {
-						Contact tempContact = new Contact(infoArr[0], infoArr[1], infoArr[2], infoArr[3], infoArr[4],
-								infoArr[5], infoArr[6], infoArr[7], infoArr[8], infoArr[9]);
+							System.out.println("Hey, Maybe here?????? #1");
+						/*Contact tempContact = new Contact(infoArr[1], infoArr[1], infoArr[2], infoArr[3], infoArr[4],
+								infoArr[5], infoArr[6], infoArr[7], infoArr[8], infoArr[9]);*/
+							
+							Contact tempContact = new Contact(contactInfo[5], contactInfo[6], contactInfo[7],
+									contactInfo[3], contactInfo[4], contactInfo[1], contactInfo[0], contactInfo[2], contactInfo[8],
+									contactInfo[9]);
 						tempContactList.add(tempContact);
 						//System.out.println("Contact: firstName = " + tempContact.get_firstName());
 						}
