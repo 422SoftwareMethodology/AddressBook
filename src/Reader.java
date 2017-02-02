@@ -21,28 +21,38 @@ public class Reader {
 				// contact array of a single person, use comma to delimit
 					String[] infoArr = line.split(tsvSplitBy);
 					String[] contactInfo = { "", "", "", "", "", "", "", "", "", "" };
-					System.out.println(Integer.toString(infoArr.length));
+					//System.out.println(Integer.toString(infoArr.length));
 					for (int i = 0; i < infoArr.length; i++) {
 						contactInfo[i] = infoArr[i];
-						System.out.println(infoArr[i]);
+						//System.out.println(infoArr[i]);
 					}
 					if(contactInfo[5].isEmpty() && contactInfo[6].isEmpty()){
 						continue;
 					}else{
+						
+						
+						
 						if (infoArr.length <= 8) {
-							System.out.println("DOINGIT");
+							//System.out.println("DOINGIT");
+							
+							//public Contact(String city, String state, String zip, String address, String address2, String lastName,
+							//String firstName, String phoneNumber, String email, String website)
+							
 							Contact tempContact = new Contact(contactInfo[0], contactInfo[1], contactInfo[2],
 								contactInfo[3], contactInfo[4], contactInfo[5], contactInfo[6], contactInfo[7], " ",
 								" ");
 							tempContactList.add(tempContact);
-							System.out.println("Contact: firstName = " + tempContact.get_firstName());
+							
+							System.out.println("Contact: Add2 = " + tempContact.get_address2() + " Arr Add2 = " + contactInfo[4] );
 						
 						} else {
 						Contact tempContact = new Contact(infoArr[0], infoArr[1], infoArr[2], infoArr[3], infoArr[4],
 								infoArr[5], infoArr[6], infoArr[7], infoArr[8], infoArr[9]);
 						tempContactList.add(tempContact);
-						System.out.println("Contact: firstName = " + tempContact.get_firstName());
+						//System.out.println("Contact: firstName = " + tempContact.get_firstName());
 						}
+						
+						
 					/*
 					 * System.out.println("Contact : firstName= " + contact[0] +
 					 * " , lastName=" + contact[1] + " , street address=" +

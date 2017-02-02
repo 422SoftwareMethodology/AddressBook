@@ -13,7 +13,7 @@ public class Sorter {
 		       public int compare(Contact c1, Contact c2) {
 		            int result =  c1.get_lastName().compareToIgnoreCase(c2.get_lastName());
 		            if (result != 0){
-		                System.out.println("Matching Last name!");
+		                //System.out.println("Matching Last name!");
 		            	return result;
 		                }
 		            return c1.get_firstName().compareToIgnoreCase(c2.get_firstName());
