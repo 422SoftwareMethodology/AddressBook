@@ -339,8 +339,9 @@ public class Frame1 extends JFrame {
 
 	public static void saveAs(String path) {
 		openContactList = AddTableToContact();
+		String fileLocation = trimTSV(path);
 		try {
-			Writer.saveAsWriter(openContactList, path);
+			Writer.saveAsWriter(openContactList, fileLocation);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -350,6 +351,13 @@ public class Frame1 extends JFrame {
 	
 	public static void getNewContact(ArrayList<Contact> contactList){
 		openContactList = contactList;
+	}
+	
+	public static String trimTSV(String fileName){
+		int length = fileName.length();
+		String returnName = fileName.substring(0, length-4);
+		System.out.println(returnName);
+		return returnName;
 	}
 
 }
