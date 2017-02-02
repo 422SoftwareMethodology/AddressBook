@@ -26,6 +26,13 @@ public class EditAddressName extends JFrame{
 	    nameTextField = new JTextField(currentName);
 	    
 	    buttonPanel.add(confirmButton);
+	    confirmButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		String newName = nameTextField.getText();
+	    		Menu.setNewAddressBookName(newName, currentName);
+	    		dispose();
+	    	}
+	    });
 	    
 	    buttonPanel.add(cancelButton);
 	    cancelButton.addActionListener(new ActionListener() {

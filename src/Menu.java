@@ -8,6 +8,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -30,7 +34,7 @@ public class Menu extends JFrame {
 	private JTextArea text;
 	private JTable table;
 	private int rowSelected = -1;
-	private String bookFolderLoc = System.getProperty("user.dir");
+	private static String bookFolderLoc = System.getProperty("user.dir");
 	private String exportFolderLoc = System.getProperty("user.dir");
 	private ArrayList<Contact> importContacts;
 	private ArrayList<Contact> exportContacts;
@@ -276,6 +280,20 @@ public class Menu extends JFrame {
 
 		}
 
+	}
+	
+	public static void setNewAddressBookName(String newName, String oldName){
+		Path oldPath = Paths.get(bookFolderLoc + oldName + ".tsv" );
+		Path newPath = Paths.get(bookFolderLoc + newName + ".tsv");
+		try {
+			Files.move(oldPath, oldPath.resolveSibling(newPath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		addressBookNames.remove(oldName + ".tsv");
+		addressBookNames.add(newName + ".tsv");
+		refreshTable(addressBookNames);
 	}
 
 }
