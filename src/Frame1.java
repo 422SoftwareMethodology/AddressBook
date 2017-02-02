@@ -350,9 +350,8 @@ public class Frame1 extends JFrame {
 
 	public static void saveAs(String path) {
 		openContactList = AddTableToContact();
-		String fileLocation = trimTSV(path);
 		try {
-			Writer.saveAsWriter(openContactList, fileLocation);
+			Writer.saveAsWriter(openContactList, path);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
